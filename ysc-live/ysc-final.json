@@ -1,0 +1,345 @@
+/*
+ * ====================== YSC 整合源 · 点播 + 直播（最终版） ======================
+ * 整理日期：2026-10-30
+ *
+ * 【由哪几份源合成】
+ *   ① 你自己的聚合站      http://ys.cxkjg.cn/api/provide/tvbox            → 12 站
+ *   ② 公开 TVBox 配置里活着的 CMS 接口（实测逐个抓过 ?ac=list）
+ *      liucn / qist / 高天流云 / 王小二 等公开配置中的直连站               → 8 站
+ *   ③ 公开 IPTV 仓库的直播列表
+ *      vbskycn/iptv（308 台）、zhi35/iptv（79 台）、zwc456baby（30 台）    → 4 路
+ *   ④ 编译型 jar 爬虫（TVBox 的 csp_*）：运行时下载 jar → 解析字节码 →
+ *      生成 JS 骨架 → 注册进沙箱，所以这里可以像普通站一样列出来          → 4 站
+ *
+ * 【能不能用，看这里的实测数字（2026-10-30）】
+ *   ① 12 个聚合站：全部存活；7 个返回 JSON、5 个返回 rss XML（应用按响应嗅探，type 一律写 1）
+ *   ② 8 个直连站：?ac=list 全部 200，?ac=videolist 每页 20 条并带 vod_play_url
+ *      天涯 73399 / 建安 64950 / 率率 147909 / 电影天堂 84878
+ *      量子 161686 / 非凡 98872 / 百度 49503 / 火狐 115957
+ *   ③ 直播抽测：vbskycn 抽 12 全 200；zhi35-china 抽 12 中 11；zwc 抽 12 全 200
+ *   ④ jar 站：骨架能生成（类名/URL/选择器/调用序列都还原得出来），
+ *      但方法体是空实现 —— 详见文件末尾的说明，别指望它直接出片
+ *
+ * 【导入】设置 → 内容源 → 「本机文件导入」→ 选中本文件
+ *   正文落进沙箱 <filesDir>/configs/ 并自动设为当前配置档，之后断网/换域名都能切回来。
+ *
+ * 【保留注释没关系】本应用解析走宽松模式，`//`、`/* *\/`、尾逗号都能吃。
+ * ========================================================================= */
+
+{
+  "name": "YSC 整合源·点播+直播",
+
+  "sites": [
+    // ─────────────────── ① 你自己的聚合站（12 个，全部实测存活） ───────────────────
+    {
+      "key": "创享影视",
+      "name": "🌟 创享影视",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_2680151544",
+      "name": "📡 金鹰",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=2680151544",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_3848762792",
+      "name": "📡 闪电",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=3848762792",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1840804598",
+      "name": "📡 非凡",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1840804598",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1470828922",
+      "name": "📡 量子",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1470828922",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_4118858385",
+      "name": "📡 WS",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=4118858385",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1016684692",
+      "name": "📡 速博",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1016684692",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1208629981",
+      "name": "📡 HD(SN)",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1208629981",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_2761253814",
+      "name": "📡 红牛",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=2761253814",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_4194624554",
+      "name": "📡 U酷",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=4194624554",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_4247318859",
+      "name": "📡 光速",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=4247318859",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_531717376",
+      "name": "📡 樱花",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=531717376",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+
+    // ─────────────── ② 公开配置里的直连 CMS（8 个，域名各不相同，用来分散风险） ───────────────
+    // 这几家的「分类第一页」经常是空的，应用会自动退回「全部」再拉一次，属正常现象。
+    {
+      "key": "pub-tyys",
+      "name": "公开·天涯",
+      "type": 1,
+      "api": "http://tyyszy.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-jianan",
+      "name": "公开·建安",
+      "type": 1,
+      "api": "http://154.219.117.232:9981/jacloudapi.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-suoniapi",
+      "name": "公开·率率",
+      "type": 1,
+      "api": "https://suoniapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-dytt",
+      "name": "公开·电影天堂",
+      "type": 1,
+      "api": "http://caiji.dyttzyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-lziapi",
+      "name": "公开·量子直连",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-ffzy",
+      "name": "公开·非凡直连",
+      "type": 1,
+      "api": "http://ffzy.tv/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-bdzy",
+      "name": "公开·百度",
+      "type": 1,
+      "api": "https://api.apibdzy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-hhzy",
+      "name": "公开·火狐",
+      "type": 1,
+      "api": "https://hhzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+
+    // ─────────────── ③ 编译型 jar 爬虫（实验）：站点自带 jar 地址，运行时自动转 JS ───────────────
+    // 说明：应用没有 JVM，只能「结构化解析」——把类名、URL 模板、Jsoup 选择器、
+    // 请求调用序列翻译成 JS 骨架并注册进沙箱。它能消掉「未注册的爬虫类」并给出线索，
+    // 但混淆过的业务逻辑还原不出等价实现，所以这几个站大概率只出分类不出片。
+    // 想验证解析过程：选中该站后到「我的 → 爬虫沙箱实验室」看类列表与日志。
+    {
+      "key": "jar-doudou",
+      "name": "实验·豆瓣 DouDou（fty.jar）",
+      "type": 3,
+      "api": "csp_DouDou",
+      "jar": "https://raw.liucn.cc/box/fty.jar"
+    },
+    {
+      "key": "jar-appysv2",
+      "name": "实验·AppYsV2（fty.jar）",
+      "type": 3,
+      "api": "csp_AppYsV2",
+      "jar": "https://raw.liucn.cc/box/fty.jar"
+    },
+    {
+      "key": "jar-xbpq",
+      "name": "实验·XBPQ（qist spider.jar）",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/jar/spider.jar"
+    },
+    {
+      "key": "jar-duboku",
+      "name": "实验·独播库（qist spider.jar）",
+      "type": 3,
+      "api": "csp_Duboku",
+      "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/jar/spider.jar"
+    }
+  ],
+
+  // ─────────────────── ④ 电视直播（13 路，一路看不顺就换下一路） ───────────────────
+  // 应用一次只用一路（直播页右上角可切）；台标/EPG 多数在 m3u 里自带。
+  // 前 6 路是上海/河南两地移动·联通·电信的 IPTV 表，随包内置（rawfile:live/*.m3u），
+  // 地址族与可达条件写在线路名和文件表头里：
+  //   上海移动 公网单播，64 台，央视 1~17 齐全（CCTV-5+ 在另一套 yinhe CMS，公网 IPv4 不可达），
+  //             上海本地 13 个（基础台 5 个 + 数字付费 8 个；纪实人文/外语频道/极速汽车 在该 CMS 上 404）；
+  //   上海电信 原始 rtp 组播，已改写为 udpxy 形式，需把 192.168.1.1:4022 换成自家路由器地址；
+  //             上海本地 19 个（含哈哈炫动/七彩戏剧/法治天地/东方财经/上海教育），央视命名已统一去重；
+  //   上海联通 20.254.1.9 / 10.223.3.189 联通内网，仅上海联通宽带可达；上海本地 15 个；
+  //   河南移动 iptv.cdn.ha.chinamobile.com，仅河南移动网络可达；
+  //   河南电信 219.150.217.47:6610，仅河南电信网络可达；
+  //   河南联通 192.168.1.1:4000 是本机 udpxy/msd_lite 代理口，需先在家里的路由器上开代理。
+  //   河南三网的河南本地台：移动 210（含 18 个地市新闻综合）、电信 25、联通 32（HNTV1~10 + ZZTV1~6 + 戏曲/文博/功夫/各区县），
+  //   其中河南联通/移动原来把 HNTV* 误判到了「上海本地/特色频道」，已按台名归回「河南本地」。
+  // 后 7 路是公开源；“聚合 Gather” 来自 cysk003/supermeguo-BoxRes 的 catcr.json（wget.la 加速）。
+  // zhi35 仓库有两份：live-china.m3u 只有 79 个直播中国频道，iptv.m3u 才是全量
+  // （央视频道/卫视频道/地方频道/港澳台/直播中国，331 台，其中 276 个是 IPv4 地址，实测 96% 可播）。
+  "lives": [
+    {
+      "name": "LIVE·上海移动 IPTV（64 台·公网可播）",
+      "url": "rawfile:live/sh-mobile.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·上海电信 IPTV（149 台·组播需 udpxy）",
+      "url": "rawfile:live/sh-telecom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·上海联通 IPTV（125 台·仅联通宽带）",
+      "url": "rawfile:live/sh-unicom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·河南移动 IPTV（350 台·仅移动网络）",
+      "url": "rawfile:live/hn-mobile.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·河南电信 IPTV（75 台·仅电信网络）",
+      "url": "rawfile:live/hn-telecom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·河南联通 IPTV（174 台·需本机 udpxy）",
+      "url": "rawfile:live/hn-unicom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·公开源 vbskycn（308 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "LIVE·直播中国 zhi35（79 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhi35/iptv/master/live-china.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·浙江本地 zwc（30 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zwc456baby/iptv_alive/refs/heads/master/live.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·央卫视 wwb521",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/wwb521/live/refs/heads/main/tv.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·聚合 Gather（123 台）",
+      "url": "https://wget.la/https://raw.githubusercontent.com/YanG-1989/m3u/refs/heads/main/Gather.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·全国综合 zhi35（331 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhi35/iptv/master/iptv.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·电台 radio（159 个）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhi35/iptv/master/radio.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE.🈲18-",
+      "type": 0,
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zeee-u/lzh06/main/fl.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://live.fanmingming.com/tv/{name}.png"
+    }
+  ]
+}
