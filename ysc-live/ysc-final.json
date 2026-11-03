@@ -8,17 +8,105 @@
  *      liucn / qist / 高天流云 / 王小二 等公开配置中的直连站               → 8 站
  *   ③ 公开 IPTV 仓库的直播列表
  *      vbskycn/iptv（308 台）、zhi35/iptv（79 台）、zwc456baby（30 台）    → 4 路
- *   ④ 编译型 jar 爬虫（TVBox 的 csp_*）：运行时下载 jar → 解析字节码 →
- *      生成 JS 骨架 → 注册进沙箱，所以这里可以像普通站一样列出来          → 4 站
+ *   ④ （已作废）编译型 jar 爬虫：以前挂过 4 个「实验·」站（csp_DouDou/AppYsV2/XBPQ/Duboku）。
+ *      jar 只能抽出类名/URL/选择器，方法体是空实现，既无 host 也无 ext，永远出不了片；
+ *      2026-11-02 已全部移除，本文件不再列任何 jar 实验站——要跑 csp_ 站只认两条路：
+ *      随包内置 JS（rawfile/spider/classes/，见 ⓪）或 XBPQ 规则引擎（见 ⑧）      → 0 站
  *
- * 【能不能用，看这里的实测数字（2026-10-30）】
+ *   ⑤ 公开配置实测新增（2026-11-02）：从 catcr/oktv/qist 等公开 TVBox 配置里
+ *      筛出可直连的 CMS 站（?ac=list 逐个抓过、视频数 7 万~17 万），排除成人/Cloudflare/死链 → 6 站
+ *      外加 qist/tvbox 仓库的公开 IPTV 直播列表（list/ITV/tvlive，gh-proxy 实测可达） → 3 路
+ *   ⑥ clun.top 四份接口（box/aa/jsm/fun）实测新增（2026-11-02）：
+ *      fun.json 为 18+ 成人源 → 按 ⑨ 纳入，带 adult 标记；未解锁时不进站点面板也不进聚合搜索、不当默认站兜底，
+ *      面板末尾只留一行「🔞 成人内容 · 输口令展开」当入口；
+ *      box/aa/jsm 绝大多数是 drpy(.py) 与 csp_ JS 爬虫，
+ *      本 App 无 Python 运行时，drpy(.py) 站至今无法出片；csp_ 站只有两类能跑：
+ *      规则型（csp_XBPQ，见 ⑧）与随包内置了 JS 的（rawfile/spider/classes/，见 ⓪），
+ *      其余 csp_ 仍需逐个补 JS 实现，未内置的一律空数据；
+ *      本批仅抽取其中可直连的 type=1 CMS 站（?ac=list 逐个抓过、视频数 7 万~15 万）→ 6 站
+ *   ⑦ clun.top 直播源（2026-11-02）：从 box/aa/jsm 抽出的 m3u 直播，剔除 127.0.0.1/./lib 本地代理与死链，
+ *      实测可达 → 9 路（虎牙/斗鱼一起看、B站、APTVM3U、suxuang/Guovin/mlzlzj/legal-iptv、catvod）；
+ *      YY轮播（yylunbo.m3u）属「轮播」内容，按直播源时效性筛选标准不予纳入
+ *   ⑧ clun.top 规则爬虫（2026-11-02）：box.json 的 20 个 csp_XBPQ 站其 ext 指向 clun.top 托管的 XBPQ 规则文件；
+ *      把规则文件内联为 ext 后，App 沙箱内置的 XBPQSpider 规则引擎可直接跑（api=csp_XBPQ 自动兜底到内置引擎），
+ *      原本集成 11 个含「列表分隔键」的规则站（飞快/农民/熊猫/秀儿/毒舌/全网看/策弛/来看/欧乐/奇迹/大白鲨），
+ *      2026-11-02 逐站体检后摘掉 7 个（域名注销/被回收/整站 404/JS 盾/改版/站方路由坏），现存 4 个：飞快/全网看/欧乐/大白鲨，
+ *      其余 9 个缺列表键的与豆瓣（云盘API需token）未纳入
+ *   ⑨ 成人源（clun.top/fun.json，2026-11-02 两轮实测 + 11-03 收尾）：5 个 type=1 CMS + 5 个 type=2 XML 采集 + 2 个 type=4 频道表，
+ *      共 12 个成人点播站、全部标 "adult": 1；成人直播 2 路（色播聚合 + MyCamTV）。口令改由远程下发（见 ⑭），
+ *      解锁按自然日：当天输过一次就不再问，过 0 点重新要；
+ *      未解锁时站点面板根本不列成人站（只在末尾留一行「🔞 成人内容 · 输口令展开」），也不进聚合搜索、不会落到默认站上；
+ *      直播线路列表同理，未解锁不列带 adult 的那两路。
+ *      fun.json 原有 30 多个 type=1 站，我侧三轮重试能出数据的只有 滴滴/嘿嘿/火速 3 个；
+ *      真正补上的是金巴系 XML（美少女/信号/香奶儿/白嫖/排购，每个 2.4 万~2.6 万条，详情直接给 m3u8）；
+ *      其余（色猫/沙鱼/麻豆/番号/乐播/探探/155/辣椒/抖阴/精品…）连接被直接重置或域名解不出，
+ *      抄进来只是死链，故不纳入（11-03 又按用户反馈拿回来重测了一轮，见 ⑮）。fl.m3u / hsck_rh.m3u 属点播性质，见 sites 末尾说明。
+ *
+ * 【能不能用，看这里的实测数字（2026-11-02 更新）】
  *   ① 12 个聚合站：全部存活；7 个返回 JSON、5 个返回 rss XML（应用按响应嗅探，type 一律写 1）
  *   ② 8 个直连站：?ac=list 全部 200，?ac=videolist 每页 20 条并带 vod_play_url
  *      天涯 73399 / 建安 64950 / 率率 147909 / 电影天堂 84878
  *      量子 161686 / 非凡 98872 / 百度 49503 / 火狐 115957
  *   ③ 直播抽测：vbskycn 抽 12 全 200；zhi35-china 抽 12 中 11；zwc 抽 12 全 200
- *   ④ jar 站：骨架能生成（类名/URL/选择器/调用序列都还原得出来），
- *      但方法体是空实现 —— 详见文件末尾的说明，别指望它直接出片
+ *   ④ jar 实验站：已全部摘除（骨架能生成，但方法体是空实现，只会出一个类名）——
+ *      旧的在线快照里如果还看得到「实验·」条目，把 dist/hosted 推上去覆盖就干净了
+ *   ⑤ 新增 6 站：暴風 17.0 万 / 影剧资源 15.2 万 / 非凡直连 9.9 万 / 大众 8.4 万 / 爱奇艺 7.0 万 / 天涯资源 7.3 万，
+ *      ?ac=list 全部 200 且带 vod 数据，应用按 type=1 走 CMS 嗅探即可；3 路 qist 直播 gh-proxy 实测可达
+ *   ⑥ clun.top 新增 6 站：360zy 7.4 万 / 金鹰 11.7 万 / 速播 11.7 万 / 优质 10.8 万 / 樱花 10.5 万 / 茅台MT 15.2 万，
+ *      ?ac=list 全部 200 带 vod 数据；box.json 里其余直连站多为已内置站点的重复域名，已去重
+ *   ⑦ 直播 9 路：虎牙/斗鱼一起看、B站直播、APTVM3U、suxuang/Guovin/mlzlzj/legal-iptv、catvod 均实测可达；
+ *      YY轮播属轮播内容（非实时频道），按筛选标准排除
+ *   ⑧ 规则爬虫 4 站：走内置 XBPQ 规则引擎；飞快/全网看/欧乐 装机实测分别出 60/36/24 条，
+ *      大白鲨 我侧超时（地域嫌疑，规则完整保留）
+ *   ⑩ 2026-11-02 全站体检：57 站逐个过 DNS（223.5.5.5/8.8.8.8/1.1.1.1 三源）+ TCP/TLS + 内容层片单校验，
+ *      搬家已补 4 处（电影导航转 https、人人电影网走 https 首页、飞快 tv→in、熊猫域名漂移）；
+ *      新增 2 个实测大站（公开·巨量 34 万条 / 公开·极速资源 11 万条）；
+ *      摘掉 11 条非地域原因的死条目（4 个无 host/ext 的 jar 骨架 + 农民/策弛/来看/奇迹/毒舌/熊猫/秀儿）；
+ *      站点总数 57 → 48（当时面板里减去 6 个成人站显示 42 个可用）
+ *   ⑪ 2026-11-02 成人源补位：金巴系 5 个 XML 采集接口 + 日韩影片表入点播（共 12 个成人站），
+ *      色播聚合入直播（lives 增至 26 路，其中 1 路成人）；
+ *      fun.json 那 40 路成人直播里其余 39 路均未过线（大秀/欧美台名域名 NXDOMAIN、大洋马/台湾成人回 404、
+ *      fish2018/lib 仓库已整体删除），细节写在 lives 段尾；站点总数 48 → 54，面板仍显 42（成人不入面板）
+ *   ⑫ 2026-11-02 补完：上一轮只验到“列表能出”，这轮逐个打到取链层，三个坑当场补掉：
+ *      a) 金巴 XML 的 <dd flag="ckplayer"> 里是一个裸 m3u8 地址，不带「集名$」前缀，
+ *         而拆剧集只认带 $ 的写法 → 分类、列表、片名全对，点进详情一集都拆不出（就是“只能拿列表拿不到地址”），
+ *         XmlSource 与 TvBoxSource 两处同时补了裸地址（并顺手接上 <at> 前缀拼接）；
+ *      b) 成人直播是 flv 直连流，却被直播列表代理当 m3u8 去拉 → 三次 Operation timeout 后仍交给本机空列表，
+ *         播放器直接 5400103；现按后缀黑名单跳过非 HLS 地址；
+ *      c) 色播聚合表里出现过百分号编码的频道名（%3F%3F娟公子%3F%3F），解析时按名解码。
+ *      同时新增 公开·新浪资源（11.7 万条，抽样 12/12 可播），站点总数 54 → 55（面板 42 → 43）
+ *   ⑬ 2026-11-03 装机端到端复验（上面三个补丁都是在这一步才看出来的）：
+ *      金巴 5 个 XML 站逐个进详情，详情里能拆出「正片」并真出画；同一批地址两轮抽测的可播率波动很大
+ *        （凌晨：香奶儿 4/6、美少女 5/6、信号 4/6、白嫖 2/6，排购当时 TLS 握手超时；
+ *          上午复测：香奶儿 6/6、排购 5/6（已恢复，2.45 万条）、信号 5/6、美少女 3/6、白嫖 3/6，合计 22/30）
+ *        ——这类采集站的可播率就在五六成到七成之间跳，播不出的那条点了会换下一条线路，不是取链环节的问题；
+ *      日韩影片表（type=4）出画 1.3 秒；色播聚合的 flv 台出画（表是真人房间，同时在线率约两成）；
+ *      顺手把普通请求的读超时从 15 秒放到 20 秒：新浪采集口与 clun.top 的表在真机上出现过 15~18 秒才回，
+ *        卡 15 秒会被判成「站点死了」；
+ *      公开·新浪资源从「首页只有 1 条」修到能用：退「全部」的判据从「一条都没有」放宽到「不足 3 条」，
+ *        真机首页 20 条 / 49 个分类（首位是补进去的「全部」），点连续剧第 5 集 1920x1080 出画；
+ *        同时给这一发兜底接住异常——「全部」超时不能把已经拿到的首屏顶掉（否则首页从 1 条变 0 条）；
+ *      非成人站回归：公开·量子直连 41 个分类、连续剧「我的后半生」仍正常拆出 36 集（第01集…）并出画，
+ *        说明上面那个「裸地址也收」的拆集改动没弄坏正常的「集名$地址」写法。
+ *   ⑭ 2026-11-03 成人门禁改口径 + 首页入口收敛：
+ *      a) 解锁从「输一次管 5 分钟、只记内存」改成「按自然日、落盘」：当天输过口令后重启也不再问，过 0 点重新要；
+ *         口令不再在机器上设，由远程一处下发（本机 3 个月内有缓存就不联网），后台每 6 小时对齐一次，
+ *         取到新口令会当场收回今天的授权；
+ *      b) 首页那排「🔞 成人点播」入口卡整行删掉，站点面板也改成「未解锁不列成人站」：
+ *         上一版先把 33 个成人站带 🔞 全列在面板里、选中才拦，用户反馈「切完站成人站还在那摆着，看着乱」；
+ *         现在面板只列可用站，末尾多一行「🔞 成人内容 · 输口令展开（N 个站点）」，口令验完当场把面板重开成全部站点；
+ *         面板行号→站点下标的映射在 openPicker() 里重算，解锁行用 ADULT_ROW 哨兵（-1），待办站点用 GATE_NONE（-2）；
+ *      c) 装机实测：未解锁面板提示「共 43 个可选站点…（另有 33 个成人站点收起，点末尾一行输口令）」，
+ *         输错口令只提示「口令不正确」、门不关也不切站；输对后提示变成「共 76 个可选站点…（含 33 个成人站点）」。
+ *   ⑮ 2026-11-03 候选合入后再逐站过线，只留实测能播的（用户口径：「只收实测能播的」）：
+ *      a) 从在线源 clun.top/fun.json 把成人点播站与成人直播表并进本文件（站点键名统一 adult-c- 前缀），
+ *         一度增至 76 站（成人 33）/ 30 路直播（成人 5）；
+ *      b) 21 个 adult-c-* 采集站两侧同测全死（真机聚合搜索 ac=videolist + ac=detail 两发均失败，
+ *         本机按应用取链口径重跑也全是 Connection reset / 十秒超时）→ 全部剔除，记录写在 sites 的 ⑨b 段；
+ *      c) 4 张成人直播表：日韩那张与点播的「🔞 日韩影片表」同源（不重复收），国产随机 12 通 2、
+ *         麻豆通 3 且整表 8.3MB 拉完要 187 秒（超应用 15~20 秒读超时）→ 均剔除；
+ *         MyCamTV 随机 12 通 12 转正，色播聚合随机 12 通 5 保留（理由见 lives 段尾）；
+ *      d) 定稿：点播 55 站（成人 12）/ 直播 27 路（成人 2），未解锁面板显示 43 站 + 一行解锁入口。
  *
  * 【导入】设置 → 内容源 → 「本机文件导入」→ 选中本文件
  *   正文落进沙箱 <filesDir>/configs/ 并自动设为当前配置档，之后断网/换域名都能切回来。
@@ -30,6 +118,11 @@
   "name": "YSC 整合源·点播+直播",
 
   "sites": [
+    // ─────────────── ⓪ 内置 drpy 规则爬虫（JS 随包，classes/ 启动自动注册 csp_<文件名>） ───────────────
+    { "key": "js_nongmin", "name": "农民影视", "type": 3, "api": "csp_nongmin", "searchable": 1, "quickSearch": 1, "changeable": 0 },
+    { "key": "js_kuaikan", "name": "快看影视", "type": 3, "api": "csp_kuaikan", "searchable": 1, "quickSearch": 1, "changeable": 0 },
+    { "key": "js_dydhhy", "name": "电影导航", "type": 3, "api": "csp_dydhhy", "searchable": 1, "quickSearch": 1, "changeable": 0 },
+    { "key": "js_rrdyw", "name": "人人电影网", "type": 3, "api": "csp_rrdyw", "searchable": 1, "quickSearch": 1, "changeable": 0 },
     // ─────────────────── ① 你自己的聚合站（12 个，全部实测存活） ───────────────────
     {
       "key": "创享影视",
@@ -129,7 +222,7 @@
     },
 
     // ─────────────── ② 公开配置里的直连 CMS（8 个，域名各不相同，用来分散风险） ───────────────
-    // 这几家的「分类第一页」经常是空的，应用会自动退回「全部」再拉一次，属正常现象。
+    // 这几家的「分类第一页」经常是空的或只有一两条（模板给的假分类），应用会自动退回「全部」再拉一次，属正常现象。
     {
       "key": "pub-tyys",
       "name": "公开·天涯",
@@ -195,43 +288,422 @@
       "quickSearch": 1
     },
 
-    // ─────────────── ③ 编译型 jar 爬虫（实验）：站点自带 jar 地址，运行时自动转 JS ───────────────
-    // 说明：应用没有 JVM，只能「结构化解析」——把类名、URL 模板、Jsoup 选择器、
-    // 请求调用序列翻译成 JS 骨架并注册进沙箱。它能消掉「未注册的爬虫类」并给出线索，
-    // 但混淆过的业务逻辑还原不出等价实现，所以这几个站大概率只出分类不出片。
-    // 想验证解析过程：选中该站后到「我的 → 爬虫沙箱实验室」看类列表与日志。
+    // ─────────────── ⑤ 公开配置实测新增（2026-11-02，逐个抓 ?ac=list 验证存活） ───────────────
+    // 原来这里挂的是 4 个「实验·jar 骨架」站（csp_DouDou/AppYsV2/XBPQ/Duboku）：
+    // 它们既没有 host 也没有 ext，永远只能出一个类名，取不到任何数据，已整块摘掉。
     {
-      "key": "jar-doudou",
-      "name": "实验·豆瓣 DouDou（fty.jar）",
-      "type": 3,
-      "api": "csp_DouDou",
-      "jar": "https://raw.liucn.cc/box/fty.jar"
+      "key": "pub-bfzy",
+      "name": "公开·暴風",
+      "type": 1,
+      "api": "https://bfzyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
     },
     {
-      "key": "jar-appysv2",
-      "name": "实验·AppYsV2（fty.jar）",
-      "type": 3,
-      "api": "csp_AppYsV2",
-      "jar": "https://raw.liucn.cc/box/fty.jar"
+      "key": "pub-tyysapi",
+      "name": "公开·天涯资源",
+      "type": 1,
+      "api": "https://tyyszyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
     },
     {
-      "key": "jar-xbpq",
-      "name": "实验·XBPQ（qist spider.jar）",
+      "key": "pub-ffzyapi",
+      "name": "公开·非凡采集",
+      "type": 1,
+      "api": "https://cj.ffzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-maotai",
+      "name": "公开·影剧资源",
+      "type": 1,
+      "api": "https://caiji.maotaizy.cc/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-iqiyi",
+      "name": "公开·爱奇艺",
+      "type": 1,
+      "api": "https://www.iqiyizyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-dazhong",
+      "name": "公开·大众资源",
+      "type": 1,
+      "api": "https://cdn.dzzyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-360zy",
+      "name": "360zy资源",
+      "type": 1,
+      "api": "https://360zy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-jyzy",
+      "name": "金鹰资源",
+      "type": 1,
+      "api": "https://jyzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-subo",
+      "name": "速播资源",
+      "type": 1,
+      "api": "https://subocaiji.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-yyzy",
+      "name": "优质资源",
+      "type": 1,
+      "api": "https://api.yyzy-tv.vip/inc/apijson.php",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-apiyh",
+      "name": "樱花资源",
+      "type": 1,
+      "api": "https://m3u8.apiyhzy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-mtzy",
+      "name": "茅台MT资源",
+      "type": 1,
+      "api": "https://mtzy.me/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    // 2026-11-02 从公开配置里挑出来实测通过的两个（ac=list 出分类、ac=videolist 出片单），用来补摘掉的规则站
+    {
+      "key": "pub-juliang",
+      "name": "公开·巨量",
+      "type": 1,
+      "api": "https://api.juliang.live/api/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-jszy",
+      "name": "公开·极速资源",
+      "type": 1,
+      "api": "https://jszyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    }
+,
+    // 2026-11-02 新增：新浪资源。11.7 万条、48 个分类、搜索可用（实测「流浪地球」回 5 条），
+    // 关键是片单里的地址真能拉：抽样 12 条全是 200 的 #EXTM3U。
+    // 它家一条片子给两条线路（xlyun / xlm3u8），第一条其实是网页（回 <head>），
+    // 第二条才是真列表 —— 播放页碰到起播失败会自动换下一条线路，不影响看
+    // 2026-11-03 装机复验：它那份分类表是套空壳模板（48 个分类里「电影」只有 1 条、电视剧/动漫/综艺全是 0 条，
+    // 不带 t= 的「全部」才有一页 20 条 / 11 万部），所以首页靠「首个分类太薄就退回全部」这条规则出片，
+    // 退回后分类栏最前面会多出一个「全部」（49 个）。真机点「我的有罪之人」第 5 集：走 xlm3u8 线
+    // https://play.xluuss.com/.../index.m3u8，1920x1080 出画。它家接口慢，首包出现过 15~18 秒，读超时已放到 20 秒。
+    {
+      "key": "pub-xinlang",
+      "name": "公开·新浪资源",
+      "type": 1,
+      "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    // 同批候选里没采纳的：无尽 api.wujinapi.net（分类 63 / 12.4 万条都能出，
+    // 但抽 12 条播放地址全回 HTML 页，带不带 Referer 都一样——取链层在它那套 App 里，收进来只会播不出）；
+    // 旺旺/豆瓣/ikun/黑木耳/四圈/艾旦 三轮探测不是 NXDOMAIN 就是整站在重置后，ip 都拿不到
+    {
+      "key": "xbpq-飞快影视",
+      "name": "爬虫·飞快影视",
       "type": 3,
       "api": "csp_XBPQ",
-      "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/jar/spider.jar"
+      "ext": {
+        "作者": "魔法少女",
+        "站名": "飞快TV",
+        // 2026-11-02 装机实测：列表 40 条带封面，点进去能解出真实 m3u8。
+        // 只有一条：它家「无广告0」那一路线统一走 v.fengbao14.com，我侧 TLS 直接被打断（SSL connect fail），
+        // 其余几线（茅台/优质/魔都/最大）都是 200。遇到首线黑屏的话手动换下一线就行，不是站死了。
+        "请求头": "User-Agent$MOBILE_UA",
+        "编码": "UTF-8",
+        "主页url": "https://feikuai.in/",
+        "首页": "120",
+        "起始页": "1",
+        "分类url": "https://feikuai.in/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
+        "分类": "电影$1#剧集$2#综艺$3#动漫$4",
+        "二次截取": "",
+        // 首页顶部还插了一列纯文字热榜（`<i class="icon-hot">`），跟片卡共用 /voddetail 链接但没图没 alt，
+        // 不排掉的话前 20 格全是没封面的重复条目；排掉后正好剩 40 张完整海报
+        "数组": "/voddetail&&</a>[不包含:icon-hot]",
+        // 「固定前缀 + 左标记」写法：块是从 /voddetail 中间切开的，拿编号再拼回前缀
+        "链接": "/voddetail/+/&&\"",
+        "标题": "alt=\"&&\"",
+        "图片": "data-original=\"&&\"",
+        "副标题": "🌹+module-item-note\">&&</div",
+        "简介": "introduction-content\">&&</div",
+        "线路二次截取": "",
+        "线路数组": "tab-item\"&&</div",
+        "线路标题": "<span>&&</span>+【共+<small>&&</small>+集】",
+        "播放二次截取": "",
+        "播放数组": "module-play-list\">&&</div>",
+        "倒序": "0",
+        "播放列表": "<a&&/a>",
+        "播放标题": "<span>&&</span>",
+        "播放链接": "href=\"&&\"",
+        "跳转播放链接": "urlDecode(Base64(var player_*url\":\"&&\"))",
+        "搜索请求头": "User-Agent$MOBILE_UA",
+        "搜索url": "https://feikuai.in/label/search_ajax.html?wd={wd}&by=time&order=desc&page={pg}",
+        "搜索模式": "1",
+        "搜索后缀": "",
+        "筛选": "1",
+        "类型": "喜剧片$6#动作片$7#科幻片$8#爱情片$9#战争片$10#恐怖片$11#剧情片$12#其它$30||内地剧$13#港台剧$14#日韩剧$15#欧美剧$16#短剧$32#其它剧$31||大陆综艺$20#港台综艺$21#日韩综艺$23#欧美综艺$22#其它综艺$24||大陆动漫$25#港台动漫$26#日韩动漫$27#欧美动漫$28#其它动漫$29",
+        "剧情": "喜剧&爱情&恐怖&动作&科幻&剧情&战争&警匪&犯罪&动画&奇幻&武侠&冒险&枪战&恐怖&悬疑&惊悚&经典&青春&文艺&微电影&古装&历史&运动&农村&儿童&网络电影||古装&战争&青春偶像&喜剧&家庭&犯罪&动作&奇幻&剧情&历史&经典&乡村&情景&商战&网剧&其他||选秀&情感&访谈&播报&旅游&音乐&美食&纪实&曲艺&生活&游戏互动&财经&求职||情感&科幻&热血&推理&搞笑&冒险&萝莉&校园&动作&机战&运动&战争&少年&少女&社会&原创&亲子&益智&励志&其他",
+        "剧情值": "*",
+        "地区": "大陆&香港&台湾&美国&法国&英国&日本&韩国&德国&泰国&印度&意大利&西班牙&加拿大&其他||内地&韩国&香港&台湾&日本&美国&泰国&英国&新加坡&其他||内地&港台&日韩&欧美||国产&日本&欧美&其他",
+        "地区值": "*",
+        "语言": "国语&英语&粤语&闽南语&韩语&日语&法语&德语&其他||国语&英语&粤语&闽南语&韩语&日语&其他||国语&英语&粤语&闽南语&韩语&日语&其他||国语&英语&粤语&闽南语&韩语&日语&其他",
+        "语言值": "*",
+        "年份": "2010-2025",
+        "年份值": "*",
+        "字母": "A&B&C&D&E&F&G&H&I&J&K&L&M&N&O&P&Q&R&S&T&U&V&W&X&Y&Z&0-9",
+        "字母值": "*",
+        "排序": "按时间&按人气&按评分",
+        "排序值": "time&hits&score"
+      }
+    },
+    // xbpq-熊猫影视 已于 2026-11-02 摘掉：站点整页改版，旧规则那套 module-item 模板已经完全不存在，
+    // 而且首页靠 JS 跳到另一个子域、正文类名是混淆过的（class="HJEUn41UY_"），选择器写不稳——不是连不通，是解析不了。
+    // xbpq-秀儿影院 已于 2026-11-02 摘掉：站点整页改了模板（旧的 module-item-pic 规则完全对不上，首页里 0 个），
+    // 而且除了首页以外所有路径都被站方挡住——/show/... 回 403，新模板的 /vodshow/id/1.html 直接回 Cloudflare 520（源站报错）。
+    // Mac 与设备两边发都是同样的结果，不是地域网络问题，是站自己的列表路由坏了。
+    {
+      "key": "xbpq-全网看",
+      "name": "爬虫·全网看",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "请求头": "手机",
+        "简介": "剧情介绍:+stui-content__desc col-pd clearfix\">&&</div>",
+        "数组": "stui-vodlist__thumb lazyload&&</a>",
+        // 块里带 data-original，不写明就没有封面（标题走默认的 title="&&" 已经对了）
+        "图片": "data-original=\"&&\"",
+        "副标题": "pic-text text-right\">&&</span>",
+        "分类url": "https://www.qkw1.com/qkwshow/{cateId}-{area}--{class}-----{catePg}---{year}.html",
+        "分类": "短剧$duanju#电视剧$tv#电影$dy#动漫$dm#综艺$zy"
+      }
     },
     {
-      "key": "jar-duboku",
-      "name": "实验·独播库（qist spider.jar）",
+      "key": "xbpq-欧乐影视",
+      "name": "爬虫·欧乐影视",
       "type": 3,
-      "api": "csp_Duboku",
-      "jar": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/jar/spider.jar"
+      "api": "csp_XBPQ",
+      "ext": {
+        "简介": "剧情介绍:+fed-part-both fed-text-muted\">&&</p>",
+        "数组": "fed-col-xs4 fed-col-sm3 fed-col-md2\">&&</li>",
+        "图片": "data-original=\"&&\"",
+        "标题": "fed-part-eone\" href=*>&&</a>",
+        "副标题": "fed-text-center\">&&</span>",
+        "线路数组": "fed-btns-info fed-rims-info fed-part-eone&&</a>",
+        "分类url": "https://www.ifuntv.cc/f/area/{area}/class/{class}/id/{cateId}/page/{catePg}/year/{year}.html",
+        "分类": "短剧$32#电视剧$2#电影$1#动漫$4#综艺$3"
+      }
+    },
+    // 以下三个规则站已于 2026-11-02 摘掉（都不是地域网络问题）：
+    // xbpq-农民影视 www.wwgz.cn、xbpq-策弛影视 fcwei.com —— 三家公共 DNS 全部 NXDOMAIN，域名已注销；
+    // xbpq-来看点播 lkvod.me —— 域名已被回收，明文 80 端口 302 跳向 torbackg.com 广告流；
+    // xbpq-奇迹影视 qiji.91by.top —— 能解析但整站只回 nginx 的 404 页；xbpq-毒舌影视 dushe03.com —— 全站回 850 的 cdndefend 浏览器验证页，需要执行 JS。
+    {
+      "key": "xbpq-大白鲨",
+      "name": "爬虫·大白鲨",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "站名": "大白鲨",
+        "主页url": "https://dabaisha.tv/",
+        "编码": "UTF-8",
+        "分类url": "https://dabaisha.tv/{cateId}/explore/page-{catePg}-area-{area}-by-{by}-class-{class}-year-{year}.html",
+        "分类": "电影$movie#剧集$tv#综艺$variety#动漫$cartoon#短剧$mini-drama",
+        "数组": "class=\"public-list-exp\"&&</div>",
+        "图片": "https+://dabaisha.tv/upload/+data-src=\"/upload/&&\"",
+        "标题": "title=\"&&\"",
+        "副标题": "class=\"public-list-prb hide ft2\">&&<",
+        "链接": "href=\"&&\"",
+        "线路数组": "<h2&&</h2>",
+        "播放数组": "class=\"anthology-list-play&&</ul>",
+        "播放列表": "<li&&</li>",
+        "播放标题": "\">&&</a>",
+        "播放链接": "href=\"&&\"",
+        "搜索url": "https://dabaisha.tv/search?wd={wd}",
+        "搜索模式": "1",
+        "搜索数组": "class=\"cover\"&&</a>",
+        "搜索图片": "https+://dabaisha.tv/upload/+data-src=\"/upload/&&\""
+      }
+    },
+
+    // ─────────────── ⑨ 成人源（fun.json，需口令才可见可播） ───────────────
+    // 每个站都标 "adult": 1 —— 判据只看这个标记，不按片名猜（《成人礼》这类正常剧会被误伤）。
+    {
+      "key": "adult-didi",
+      "name": "🔞 滴滴成人",
+      "type": 1,
+      "api": "https://api.ddapi.cc/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-heihei",
+      "name": "🔞 嘿嘿成人",
+      "type": 1,
+      "api": "https://api.heiapi.cc/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-huosu",
+      "name": "🔞 火速成人",
+      "type": 1,
+      "api": "https://api.huosuapi.cc/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    // 下面两个在我侧时通时断（成人域名常被网络侧重置），出过完整数据所以留着
+    {
+      "key": "adult-jikun",
+      "name": "🔞 鸡坤成人",
+      "type": 1,
+      "api": "https://jkunzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-yutu",
+      "name": "🔞 玉兔成人",
+      "type": 1,
+      "api": "https://apiyutu.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    // fl.m3u 当点播收（type=4）：2066 行全是带日期的影片 m3u8（同名合并后 1978 部），
+    // 没有一个实时台、也没有 group-title，放直播里既没有节目单也不符合本 App 的直播时效标准，
+    // 但它确实是一部能点的片子集合。条数不写进站名——解析会去重，写死了就对不上。
+    {
+      "key": "adult-flm3u",
+      "name": "🔞 频道表影片",
+      "type": 4,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/zeee-u/lzh06/main/fl.m3u",
+      "searchable": 1,
+      "quickSearch": 0,
+      "adult": 1
+    },
+    // 下面 5 个是金巴系（api/xml.php）的苹果 CMS XML 接口，2026-11-02 实测：
+    //   ac=list 直接回片单（class 节点是空的，列表里 <type> 也空，所以首页只有「全部」一栏），
+    //   ac=videolist&ids= 给封面 + <dl><dd flag="ckplayer"> 直链 m3u8，ac=videolist&wd= 搜索通。
+    // 每个站 2.4 万~2.6 万条。播放 CDN 是按 IP 分的（videoNN.某域），我侧有一部分节点 TLS 握手被打断：
+    // 抽样可播率 香奶儿 5/5、美少女 3/5、排购 3/5、信号 2/5、白嫖 2/5，域名与列表层全通，
+    // 属于「换线路/换网络就能看」而不是站死，所以收；条目里遇到黑屏回详情页换一条即可。
+    // 注：这类接口的响应整包套在 <rss><list><video> 里，和旧的海阔 XML（class/video 直接挂顶层）不同，
+    //     XmlSource 原先找不到节点，这次一并补了文档壳剥离。
+    //     还有一层：dd 里就是一个裸地址（没有「集名$」前缀），而拆剧集原先只认带 $ 的写法，
+    //     所以看着“列表正常、一点进去就没地址”——现在裸地址按「正片」收，见 XmlSource.episodes。
+    {
+      "key": "adult-gdlsp",
+      "name": "🔞 香奶儿XML",
+      "type": 2,
+      "api": "https://www.gdlsp.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-msnii",
+      "name": "🔞 美少女XML",
+      "type": 2,
+      "api": "https://www.msnii.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-pgxdy",
+      "name": "🔞 排购AVXML",
+      "type": 2,
+      "api": "https://www.pgxdy.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-xrbsp",
+      "name": "🔞 信号XML",
+      "type": 2,
+      "api": "https://www.xrbsp.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-kxgav",
+      "name": "🔞 白嫖XML",
+      "type": 2,
+      "api": "https://www.kxgav.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    // 日韩影片表：40627 条带日期的成片 m3u8（同 fl.m3u 的收法，按点播收，不是直播台）。
+    // 2026-11-03 随机抽 12 条探流：可播 9 条（本批成人表里唯一过线的）；
+    //   国产系列 hsck_gc.m3u 37500 条只通 2/12（片子大量 404/403）、麻豆 mdsp.m3u 28263 条只通 3/12
+    //   且整表 8.3MB、本机拉完花了 187 秒（应用的读超时只有 15~20 秒，根本进不到列表）——两条都不要；
+    //   日韩表自己也有 6.9MB，本机一次拉完用了 91 秒，所以真机上能不能拉到列表得单独验（见 ⑮ 段的待办）。
+    // 解析器上限 5000 条，所以看到的是前 5000 部，翻页够用。
+    // 表里 4 个频道名是百分号编码的（%3F%3F娟公子%3F%3F / f%20罩杯大奶妹 / 暖暖%7E / Cherry%2520Ella），
+    // 已在 m3u 解析处按名解码（最多两轮，最后一那个是被套了两层的）。
+    {
+      "key": "adult-hsckrh",
+      "name": "🔞 日韩影片表",
+      "type": 4,
+      "api": "https://clun.top/lib/hsck_rh.m3u",
+      "searchable": 1,
+      "quickSearch": 0,
+      "adult": 1
     }
+    // 没采纳的成人采集接口（都留个记录，省得下次再试一遍）：
+    //   湿妹 www.afasu.com/api/xml.php——223.5.5.5 解析到 31.13.85.34（DNS 污染），1.1.1.1 侧是别的址但仍不通；
+    //   大奶子 apidanaizi.com——域名活着（CF），但 15 次请求只通 1 次，只肯给 at=xml，不稳到不能收；
+    //   金巴 jinbaro.com / 妖妃 / 趣色/ 草久 / 猫爪 / 探探 / 鲨鱼 / 抖阴 / 麻豆 / 奥斯卡 / 老鸭 / 精品 / souav 等 27 个
+    //   ——域名多数已 NXDOMAIN 或整站在 CF 后重置，具体见 ⑩ 的全站体检说明。
+  
+    // ─────────────── ⑨b 成人采集站（2026-11-03 从在线源 clun.top/fun.json 合入，同日两侧实测后全部剔除） ───────────────
+    // 这批 21 个采集站（键名都带 adult-c- 前缀）收进来只为回答一个问题：在线源里那些成人站，在我们这条线上到底能不能播。
+    // 2026-11-03 真机与本机同测，结论一致——21 条全死，一条没留：
+    //   真机侧：解锁后走聚合搜索（wd=无码），21 个 host 的 ac=videolist 与 ac=detail 两发全部失败
+    //           （域名不可达 / Failed to connect / 超时 / receive failed），逐 host 与本节日志比对无误；
+    //   本机侧：照应用取链口径重跑 ac=videolist&t=1&pg=1，21 条全部 curl (35) Connection reset by peer
+    //           或 (28) 十秒超时，没有一条能返回列表体。
+    // 所以「在线源可以播」指的是 clun 那份配置里的非成人部分；成人采集接口是真的没了，不是我们解析的问题。
+    // 域名已经死的四个（两家公共 DNS 都 NXDOMAIN）从一开始就没收：
+    //   花椒 api.apilyzy.com、易看 api.yikanapi.com、奶茶 caiji.naichaapi.com、探探 apittzy.com。
   ],
 
-  // ─────────────────── ④ 电视直播（13 路，一路看不顺就换下一路） ───────────────────
+  // ─────────────────── ④⑤⑦ 电视直播（25 路，一路看不顺就换下一路；末尾另有 2 路成人直播） ───────────────────
   // 应用一次只用一路（直播页右上角可切）；台标/EPG 多数在 m3u 里自带。
+  // 最后两路是成人直播（带 "adult": 1，未解锁不显示），段尾写了它们为什么是 fun.json 那 40 路里仅有的两条能看的。
   // 前 6 路是上海/河南两地移动·联通·电信的 IPTV 表，随包内置（rawfile:live/*.m3u），
   // 地址族与可达条件写在线路名和文件表头里：
   //   上海移动 公网单播，64 台，央视 1~17 齐全（CCTV-5+ 在另一套 yinhe CMS，公网 IPv4 不可达），
@@ -244,7 +716,7 @@
   //   河南联通 192.168.1.1:4000 是本机 udpxy/msd_lite 代理口，需先在家里的路由器上开代理。
   //   河南三网的河南本地台：移动 210（含 18 个地市新闻综合）、电信 25、联通 32（HNTV1~10 + ZZTV1~6 + 戏曲/文博/功夫/各区县），
   //   其中河南联通/移动原来把 HNTV* 误判到了「上海本地/特色频道」，已按台名归回「河南本地」。
-  // 后 7 路是公开源；“聚合 Gather” 来自 cysk003/supermeguo-BoxRes 的 catcr.json（wget.la 加速）。
+  // 第 7 路起共 19 路是公开源；“聚合 Gather” 来自 cysk003/supermeguo-BoxRes 的 catcr.json（wget.la 加速）。
   // zhi35 仓库有两份：live-china.m3u 只有 79 个直播中国频道，iptv.m3u 才是全量
   // （央视频道/卫视频道/地方频道/港澳台/直播中国，331 台，其中 276 个是 IPv4 地址，实测 96% 可播）。
   "lives": [
@@ -333,13 +805,107 @@
       "playerType": 1,
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
+    // ─────────────── ⑤ 公开 IPTV 直播（qist/tvbox，2026-11-02 实测可达） ───────────────
     {
-      "name": "LIVE.🈲18-",
-      "type": 0,
-      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zeee-u/lzh06/main/fl.m3u",
+      "name": "LIVE·qist 汇总 list（CCTV/卫视/地方）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/list.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "LIVE·qist 央视卫视 ITV",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/ITV.txt",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
-      "logo": "https://live.fanmingming.com/tv/{name}.png"
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·qist 地方电视 tvlive",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/tvlive.txt",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    // ─────────────── ⑦ 公开直播（clun.top 接口抽取，2026-11-02 实测可达） ───────────────
+    {
+      "name": "直播·虎牙一起看",
+      "url": "https://sub.ottiptv.cc/huyayqk.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·斗鱼一起看",
+      "url": "https://sub.ottiptv.cc/douyuyqk.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·B站直播",
+      "url": "https://sub.ottiptv.cc/bililive.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·APTVM3U(全球)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·suxuang IPTV",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·Guovin IPTV(国内)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·mlzlzj IPTV(国内)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/mlzlzj/TV/main/output/result.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·legal-iptv(海外)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/gambiarras/legal-iptv/refs/heads/main/playlist.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·catvod",
+      "url": "https://live.catvod.com/tv.m3u",
+      "playerType": 1
+    },
+    // ─────────────── 成人直播（需口令；fun.json 那 40 路里只这两条能看） ───────────────
+    // 色播聚合：真人秀场直播表，台数与分组随上游轮换（11-02 是 274 路 11 组，11-03 上午复测 125 路 5 组，
+    //   同日再测只剩 95 路，咪狐/花蝴蝶那两组也在缩），所以台名里不写路数。
+    //   全是 flv 直拉流；11-03 随机抽 12 路可播 5 路（约四成）——这类台没人开播就是拉不到，属正常，
+    //   多试几个台即可；播不出时直播页会自己换下一路。
+    //   flv 没有 m3u8 那一层列表，直播代理已按后缀黑名单跳过它（以前会被包成本机 live.m3u8，白等三次超时再报错）。
+    {
+      "name": "LIVE·色播聚合",
+      "url": "https://clun.top/lib/sbjh.m3u",
+      "playerType": 1,
+      "adult": 1
+    },
+    // MyCamTV 成人台（海外 24/7 直播表，40 台）：不在 clun 里，是本轮补查时新找到的一路，
+    // 2026-11-03 本机随机抽 12 台全部出画（12/12，这批成人表里最稳的），表 5644 字节秒回（国外域名，走 gh-proxy 拉表）。
+    {
+      "name": "LIVE·🔞 MyCamTV（40 台·海外）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zwrt/IPTV/Files/Adult.m3u",
+      "playerType": 1,
+      "adult": 1
     }
+    // 没收的成人直播表（2026-11-03 本机重测，理由都是结构性的）：
+    //   clun 自带的三张 hsck/mdsp 表当「直播台」本来就不合适：台数（37500 / 40627 / 28263）超本机的 5000 条上限，
+    //     整表 4.4~8.3MB，本机拉完要 13~187 秒，而应用的读超时只到 15~20 秒——列表根本进不去；
+    //   而且它们是「成片轮播表」不是频道表：日韩那张已按点播收进 sites 的「🔞 日韩影片表」（随机 12 通 9），
+    //     国产那张随机 12 只通 2、麻豆只通 3（且拉表 187 秒）——都不过线；
+    //   大秀 dxzb.m3u（185 路）与欧美 omzb.m3u（387 路）：抽样 0 可播，台名里的域名
+    //     （jinkangyl.com / yueyongli.top / xinzhitushu.xyz / banmabh.xyz / sinalprivado.info / xxip9.top）
+    //     在 1.1.1.1、8.8.8.8、223.5.5.5 三源齐 NXDOMAIN——是表里流全失效，不是网络侧问题；
+    //   大洋马 deyzb.m3u、台湾成人 rwcr.m3u 直接回 404 页（拿到的是站首页 HTML），test(party.m3u) 7 字节空表；
+    //   fish2018/lib 仓库已整体删除（那 27 路 txt 全拉不到）；x315601.serv00.net/10.php 只回 8 字节；bwind.fr.to 域名已解不出。
+    // 标了 "adult": 1 —— 未解锁时这两路在直播线路列表里隐藏，且🔞 标记靠这个字段而不是台名。
   ]
 }
