@@ -1,0 +1,345 @@
+#EXTM3U x-tvg-url="http://epg.51zmt.top:8000/e.xml.gz"
+# 上海电信 IPTV（组播，需 udpxy 转单播）
+# 来源 babylife/China-ShangHai-IPTV-list · Shanghai Telecom/iptv.m3u 与 ihipop/Shanghai-IPTV 的 tel_mu.m3u8
+# 原始地址为 rtp:// 组播（239.45.x.x / 233.18.204.x），已改写成 udpxy 形式 http://192.168.1.1:4022/rtp/ip:port
+# 把 192.168.1.1:4022 换成你路由器上 udpxy/msd_lite 的实际地址与端口；未开 udpxy 时无法播放
+#EXTINF:-1 tvg-name="CCTV-1" group-title="央视频道",CCTV-1
+http://192.168.1.1:4022/rtp/239.45.3.145:5140
+http://192.168.1.1:4022/rtp/233.18.204.52:5140
+#EXTINF:-1 tvg-name="CCTV-2" group-title="央视频道",CCTV-2
+http://192.168.1.1:4022/rtp/239.45.3.189:5140
+#EXTINF:-1 tvg-name="CCTV-3" group-title="央视频道",CCTV-3
+http://192.168.1.1:4022/rtp/239.45.1.68:5140
+#EXTINF:-1 tvg-name="CCTV-4" group-title="央视频道",CCTV-4
+http://192.168.1.1:4022/rtp/239.45.3.190:5140
+#EXTINF:-1 tvg-name="CCTV-5" group-title="央视频道",CCTV-5
+http://192.168.1.1:4022/rtp/239.45.1.69:5140
+#EXTINF:-1 tvg-name="CCTV-6" group-title="央视频道",CCTV-6
+http://192.168.1.1:4022/rtp/239.45.1.70:5140
+#EXTINF:-1 tvg-name="CCTV-7" group-title="央视频道",CCTV-7
+http://192.168.1.1:4022/rtp/239.45.1.193:5140
+#EXTINF:-1 tvg-name="CCTV-8" group-title="央视频道",CCTV-8
+http://192.168.1.1:4022/rtp/239.45.1.71:5140
+#EXTINF:-1 tvg-name="CCTV-10" group-title="央视频道",CCTV-10
+http://192.168.1.1:4022/rtp/239.45.1.195:5140
+#EXTINF:-1 tvg-name="CCTV-11" group-title="央视频道",CCTV-11
+http://192.168.1.1:4022/rtp/239.45.1.196:5140
+#EXTINF:-1 tvg-name="CCTV-12" group-title="央视频道",CCTV-12
+http://192.168.1.1:4022/rtp/239.45.1.197:5140
+#EXTINF:-1 tvg-name="CCTV-13" group-title="央视频道",CCTV-13
+http://192.168.1.1:4022/rtp/239.45.1.198:5140
+#EXTINF:-1 tvg-name="CCTV-14" group-title="央视频道",CCTV-14
+http://192.168.1.1:4022/rtp/239.45.1.199:5140
+#EXTINF:-1 tvg-name="CCTV-15" group-title="央视频道",CCTV-15
+http://192.168.1.1:4022/rtp/239.45.1.200:5140
+#EXTINF:-1 tvg-name="CETV1" group-title="特色频道",CETV1
+http://192.168.1.1:4022/rtp/239.45.1.125:5140
+http://192.168.1.1:4022/rtp/233.18.204.98:5140
+#EXTINF:-1 tvg-name="CETV2" group-title="特色频道",CETV2
+http://192.168.1.1:4022/rtp/239.45.1.52:5140
+http://192.168.1.1:4022/rtp/233.18.204.154:5140
+#EXTINF:-1 tvg-name="CETV4" group-title="特色频道",CETV4
+http://192.168.1.1:4022/rtp/239.45.1.50:5140
+http://192.168.1.1:4022/rtp/233.18.204.111:5140
+#EXTINF:-1 tvg-name="东方卫视" group-title="卫视频道",东方卫视
+http://192.168.1.1:4022/rtp/239.45.3.146:5140
+http://192.168.1.1:4022/rtp/233.18.204.51:5140
+#EXTINF:-1 tvg-name="新闻综合" group-title="上海本地",新闻综合
+http://192.168.1.1:4022/rtp/239.45.3.209:5140
+#EXTINF:-1 tvg-name="都市频道" group-title="上海本地",都市频道
+http://192.168.1.1:4022/rtp/239.45.3.236:5140
+#EXTINF:-1 tvg-name="哈哈炫动" group-title="上海本地",哈哈炫动
+http://192.168.1.1:4022/rtp/239.45.1.126:5140
+http://192.168.1.1:4022/rtp/233.18.204.54:5140
+#EXTINF:-1 tvg-name="五星体育" group-title="上海本地",五星体育
+http://192.168.1.1:4022/rtp/239.45.3.210:5140
+http://192.168.1.1:4022/rtp/233.18.204.58:5140
+#EXTINF:-1 tvg-name="超级体育" group-title="特色频道",超级体育
+http://192.168.1.1:4022/rtp/239.45.3.140:5140
+#EXTINF:-1 tvg-name="东方影视" group-title="上海本地",东方影视
+http://192.168.1.1:4022/rtp/239.45.3.237:5140
+http://192.168.1.1:4022/rtp/233.18.204.55:5140
+#EXTINF:-1 tvg-name="生活时尚" group-title="上海本地",生活时尚
+http://192.168.1.1:4022/rtp/239.45.3.132:5140
+http://192.168.1.1:4022/rtp/233.18.204.45:5140
+#EXTINF:-1 tvg-name="纪实人文" group-title="上海本地",纪实人文
+http://192.168.1.1:4022/rtp/239.45.3.212:5140
+#EXTINF:-1 tvg-name="法制天地" group-title="特色频道",法制天地
+http://192.168.1.1:4022/rtp/239.45.1.46:5140
+#EXTINF:-1 tvg-name="全纪实" group-title="上海本地",全纪实
+http://192.168.1.1:4022/rtp/239.45.3.135:5140
+#EXTINF:-1 tvg-name="第一财经" group-title="上海本地",第一财经
+http://192.168.1.1:4022/rtp/239.45.3.211:5140
+#EXTINF:-1 tvg-name="Knews24" group-title="特色频道",Knews24
+http://192.168.1.1:4022/rtp/239.45.3.164:5140
+#EXTINF:-1 tvg-name="炫动卡通" group-title="少儿频道",炫动卡通
+http://192.168.1.1:4022/rtp/239.45.3.187:5140
+#EXTINF:-1 tvg-name="上海教育" group-title="上海本地",上海教育
+http://192.168.1.1:4022/rtp/239.45.3.252:5140
+http://192.168.1.1:4022/rtp/233.18.204.63:5140
+#EXTINF:-1 tvg-name="湖南卫视" group-title="卫视频道",湖南卫视
+http://192.168.1.1:4022/rtp/239.45.3.228:5140
+http://192.168.1.1:4022/rtp/233.18.204.86:5140
+#EXTINF:-1 tvg-name="江苏卫视" group-title="卫视频道",江苏卫视
+http://192.168.1.1:4022/rtp/239.45.3.177:5140
+http://192.168.1.1:4022/rtp/233.18.204.85:5140
+#EXTINF:-1 tvg-name="浙江卫视" group-title="卫视频道",浙江卫视
+http://192.168.1.1:4022/rtp/239.45.3.178:5140
+http://192.168.1.1:4022/rtp/233.18.204.84:5140
+#EXTINF:-1 tvg-name="安徽卫视" group-title="卫视频道",安徽卫视
+http://192.168.1.1:4022/rtp/239.45.1.120:5140
+http://192.168.1.1:4022/rtp/233.18.204.93:5140
+#EXTINF:-1 tvg-name="北京卫视" group-title="卫视频道",北京卫视
+http://192.168.1.1:4022/rtp/239.45.3.229:5140
+http://192.168.1.1:4022/rtp/233.18.204.87:5140
+#EXTINF:-1 tvg-name="东南卫视" group-title="卫视频道",东南卫视
+http://192.168.1.1:4022/rtp/239.45.1.121:5140
+http://192.168.1.1:4022/rtp/233.18.204.94:5140
+#EXTINF:-1 tvg-name="广东卫视" group-title="卫视频道",广东卫视
+http://192.168.1.1:4022/rtp/239.45.3.230:5140
+http://192.168.1.1:4022/rtp/233.18.204.88:5140
+#EXTINF:-1 tvg-name="重庆卫视" group-title="卫视频道",重庆卫视
+http://192.168.1.1:4022/rtp/239.45.1.84:5140
+http://192.168.1.1:4022/rtp/233.18.204.100:5140
+#EXTINF:-1 tvg-name="江西卫视" group-title="卫视频道",江西卫视
+http://192.168.1.1:4022/rtp/239.45.1.122:5140
+http://192.168.1.1:4022/rtp/233.18.204.95:5140
+#EXTINF:-1 tvg-name="天津卫视" group-title="卫视频道",天津卫视
+http://192.168.1.1:4022/rtp/239.45.1.124:5140
+http://192.168.1.1:4022/rtp/233.18.204.97:5140
+#EXTINF:-1 tvg-name="四川卫视" group-title="卫视频道",四川卫视
+http://192.168.1.1:4022/rtp/239.45.1.83:5140
+http://192.168.1.1:4022/rtp/233.18.204.99:5140
+#EXTINF:-1 tvg-name="黑龙江卫视" group-title="卫视频道",黑龙江卫视
+http://192.168.1.1:4022/rtp/239.45.3.232:5140
+http://192.168.1.1:4022/rtp/233.18.204.90:5140
+#EXTINF:-1 tvg-name="辽宁卫视" group-title="卫视频道",辽宁卫视
+http://192.168.1.1:4022/rtp/239.45.1.123:5140
+http://192.168.1.1:4022/rtp/233.18.204.96:5140
+#EXTINF:-1 tvg-name="贵州卫视" group-title="卫视频道",贵州卫视
+http://192.168.1.1:4022/rtp/239.45.1.80:5140
+http://192.168.1.1:4022/rtp/233.18.204.101:5140
+#EXTINF:-1 tvg-name="山东卫视" group-title="卫视频道",山东卫视
+http://192.168.1.1:4022/rtp/239.45.3.238:5140
+http://192.168.1.1:4022/rtp/233.18.204.91:5140
+#EXTINF:-1 tvg-name="河北卫视" group-title="卫视频道",河北卫视
+http://192.168.1.1:4022/rtp/239.45.1.44:5140
+http://192.168.1.1:4022/rtp/233.18.204.103:5140
+#EXTINF:-1 tvg-name="海南卫视" group-title="卫视频道",海南卫视
+http://192.168.1.1:4022/rtp/239.45.1.81:5140
+http://192.168.1.1:4022/rtp/233.18.204.102:5140
+#EXTINF:-1 tvg-name="深圳卫视" group-title="卫视频道",深圳卫视
+http://192.168.1.1:4022/rtp/239.45.3.231:5140
+http://192.168.1.1:4022/rtp/233.18.204.89:5140
+#EXTINF:-1 tvg-name="湖北卫视" group-title="卫视频道",湖北卫视
+http://192.168.1.1:4022/rtp/239.45.3.239:5140
+http://192.168.1.1:4022/rtp/233.18.204.92:5140
+#EXTINF:-1 tvg-name="河南卫视" group-title="卫视频道",河南卫视
+http://192.168.1.1:4022/rtp/239.45.1.242:5140
+http://192.168.1.1:4022/rtp/233.18.204.105:5140
+#EXTINF:-1 tvg-name="新疆卫视" group-title="卫视频道",新疆卫视
+http://192.168.1.1:4022/rtp/239.45.1.116:5140
+http://192.168.1.1:4022/rtp/233.18.204.220:5140
+#EXTINF:-1 tvg-name="宁夏卫视" group-title="卫视频道",宁夏卫视
+http://192.168.1.1:4022/rtp/239.45.1.213:5140
+http://192.168.1.1:4022/rtp/233.18.204.230:5140
+#EXTINF:-1 tvg-name="康巴卫视" group-title="卫视频道",康巴卫视
+http://192.168.1.1:4022/rtp/239.45.1.251:5140
+#EXTINF:-1 tvg-name="兵团卫视" group-title="卫视频道",兵团卫视
+http://192.168.1.1:4022/rtp/239.45.1.117:5140
+http://192.168.1.1:4022/rtp/233.18.204.221:5140
+#EXTINF:-1 tvg-name="三沙卫视" group-title="卫视频道",三沙卫视
+http://192.168.1.1:4022/rtp/239.45.1.82:5140
+http://192.168.1.1:4022/rtp/233.18.204.172:5140
+#EXTINF:-1 tvg-name="七彩戏剧" group-title="上海本地",七彩戏剧
+http://192.168.1.1:4022/rtp/239.45.1.112:5140
+#EXTINF:-1 tvg-name="金鹰纪实" group-title="上海本地",金鹰纪实
+http://192.168.1.1:4022/rtp/239.45.1.45:5140
+http://192.168.1.1:4022/rtp/233.18.204.104:5140
+#EXTINF:-1 tvg-name="都市剧场" group-title="特色频道",都市剧场
+http://192.168.1.1:4022/rtp/239.45.3.136:5140
+http://192.168.1.1:4022/rtp/233.18.204.48:5140
+#EXTINF:-1 tvg-name="动漫秀场" group-title="少儿频道",动漫秀场
+http://192.168.1.1:4022/rtp/239.45.3.134:5140
+http://192.168.1.1:4022/rtp/233.18.204.46:5140
+#EXTINF:-1 tvg-name="欢笑剧场" group-title="特色频道",欢笑剧场
+http://192.168.1.1:4022/rtp/239.45.3.196:5140
+http://192.168.1.1:4022/rtp/233.18.204.50:5140
+#EXTINF:-1 tvg-name="茶频道" group-title="特色频道",茶频道
+http://192.168.1.1:4022/rtp/239.45.1.109:5140
+http://192.168.1.1:4022/rtp/233.18.204.43:5140
+#EXTINF:-1 tvg-name="CHINA陶瓷" group-title="特色频道",CHINA陶瓷
+http://192.168.1.1:4022/rtp/239.45.3.50:5140
+#EXTINF:-1 tvg-name="ICS" group-title="上海本地",ICS
+http://192.168.1.1:4022/rtp/239.45.1.127:5140
+#EXTINF:-1 tvg-name="极速汽车" group-title="特色频道",极速汽车
+http://192.168.1.1:4022/rtp/239.45.3.49:5140
+#EXTINF:-1 tvg-name="游戏风云" group-title="特色频道",游戏风云
+http://192.168.1.1:4022/rtp/239.45.3.131:5140
+#EXTINF:-1 tvg-name="闵行TV" group-title="特色频道",闵行TV
+http://192.168.1.1:4022/rtp/239.45.3.218:5140
+#EXTINF:-1 tvg-name="东方财经-浦东" group-title="上海本地",东方财经-浦东
+http://192.168.1.1:4022/rtp/239.45.1.119:5140
+#EXTINF:-1 tvg-name="嘉定TV" group-title="特色频道",嘉定TV
+http://192.168.1.1:4022/rtp/239.45.3.185:5140
+#EXTINF:-1 tvg-name="嘉佳卡通" group-title="少儿频道",嘉佳卡通
+http://192.168.1.1:4022/rtp/239.45.1.48:5140
+http://192.168.1.1:4022/rtp/233.18.204.151:5140
+#EXTINF:-1 tvg-name="金鹰卡通" group-title="少儿频道",金鹰卡通
+http://192.168.1.1:4022/rtp/239.45.3.119:5140
+http://192.168.1.1:4022/rtp/233.18.204.113:5140
+#EXTINF:-1 tvg-name="KAKU少儿" group-title="少儿频道",KAKU少儿
+http://192.168.1.1:4022/rtp/239.45.1.49:5140
+#EXTINF:-1 tvg-name="CMTV" group-title="特色频道",CMTV
+http://192.168.1.1:4022/rtp/239.45.1.54:5140
+#EXTINF:-1 tvg-name="CGTN" group-title="特色频道",CGTN
+http://192.168.1.1:4022/rtp/239.45.1.194:5140
+http://192.168.1.1:4022/rtp/233.18.204.28:5140
+#EXTINF:-1 tvg-name="中国天气" group-title="特色频道",中国天气
+http://192.168.1.1:4022/rtp/239.45.1.47:5140
+#EXTINF:-1 tvg-name="高尔夫网球" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/高尔夫网球.png" group-title="特色频道",高尔夫网球
+http://192.168.1.1:4022/rtp/239.45.1.243:5140
+#EXTINF:-1 tvg-name="UFC" group-title="特色频道",UFC
+http://192.168.1.1:4022/rtp/239.45.3.88:5140
+#EXTINF:-1 tvg-name="BESTV-4k 1" group-title="4K超高清",BESTV-4k 1
+http://192.168.1.1:4022/rtp/239.45.1.106:5140
+#EXTINF:-1 tvg-name="BESTV-4k 2" group-title="4K超高清",BESTV-4k 2
+http://192.168.1.1:4022/rtp/239.45.1.107:5140
+#EXTINF:-1 tvg-name="BESTV-4k 3" group-title="4K超高清",BESTV-4k 3
+http://192.168.1.1:4022/rtp/239.45.1.108:5140
+#EXTINF:-1 tvg-name="上海新闻综合" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/上海新闻综合.png" group-title="上海本地",上海新闻综合
+http://192.168.1.1:4022/rtp/233.18.204.57:5140
+#EXTINF:-1 tvg-name="上海都市" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/上海都市.png" group-title="上海本地",上海都市
+http://192.168.1.1:4022/rtp/233.18.204.53:5140
+#EXTINF:-1 tvg-name="上海第一财经" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/上海第一财经.png" group-title="上海本地",上海第一财经
+http://192.168.1.1:4022/rtp/233.18.204.59:5140
+#EXTINF:-1 tvg-name="东方财经" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/东方财经.png" group-title="上海本地",东方财经
+http://192.168.1.1:4022/rtp/233.18.204.65:5140
+#EXTINF:-1 tvg-name="CCTV-2" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV2.png" group-title="央视频道",CCTV-2
+http://192.168.1.1:4022/rtp/233.18.204.68:5140
+#EXTINF:-1 tvg-name="CCTV-3" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV3.png" group-title="央视频道",CCTV-3
+http://192.168.1.1:4022/rtp/233.18.204.69:5140
+#EXTINF:-1 tvg-name="CCTV-4" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV4.png" group-title="央视频道",CCTV-4
+http://192.168.1.1:4022/rtp/233.18.204.70:5140
+#EXTINF:-1 tvg-name="CCTV-5" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV5.png" group-title="央视频道",CCTV-5
+http://192.168.1.1:4022/rtp/233.18.204.71:5140
+#EXTINF:-1 tvg-name="CCTV-5+" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV5+.png" group-title="央视频道",CCTV-5+
+http://192.168.1.1:4022/rtp/233.18.204.67:5140
+#EXTINF:-1 tvg-name="CCTV-6" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV6.png" group-title="央视频道",CCTV-6
+http://192.168.1.1:4022/rtp/233.18.204.72:5140
+#EXTINF:-1 tvg-name="CCTV-7" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV7.png" group-title="央视频道",CCTV-7
+http://192.168.1.1:4022/rtp/233.18.204.73:5140
+#EXTINF:-1 tvg-name="CCTV-8" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV8.png" group-title="央视频道",CCTV-8
+http://192.168.1.1:4022/rtp/233.18.204.74:5140
+#EXTINF:-1 tvg-name="CCTV-9" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV9.png" group-title="央视频道",CCTV-9
+http://192.168.1.1:4022/rtp/233.18.204.75:5140
+#EXTINF:-1 tvg-name="CCTV-10" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV10.png" group-title="央视频道",CCTV-10
+http://192.168.1.1:4022/rtp/233.18.204.76:5140
+#EXTINF:-1 tvg-name="CCTV-11" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV11.png" group-title="央视频道",CCTV-11
+http://192.168.1.1:4022/rtp/233.18.204.77:5140
+#EXTINF:-1 tvg-name="CCTV-12" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV12.png" group-title="央视频道",CCTV-12
+http://192.168.1.1:4022/rtp/233.18.204.78:5140
+#EXTINF:-1 tvg-name="CCTV-13" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV13.png" group-title="央视频道",CCTV-13
+http://192.168.1.1:4022/rtp/233.18.204.79:5140
+#EXTINF:-1 tvg-name="CCTV-14" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV14.png" group-title="央视频道",CCTV-14
+http://192.168.1.1:4022/rtp/233.18.204.80:5140
+#EXTINF:-1 tvg-name="CCTV-15" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV15.png" group-title="央视频道",CCTV-15
+http://192.168.1.1:4022/rtp/233.18.204.81:5140
+#EXTINF:-1 tvg-name="CCTV-16" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV16.png" group-title="央视频道",CCTV-16
+http://192.168.1.1:4022/rtp/233.18.204.82:5140
+#EXTINF:-1 tvg-name="CCTV-17" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV17.png" group-title="央视频道",CCTV-17
+http://192.168.1.1:4022/rtp/233.18.204.83:5140
+#EXTINF:-1 tvg-name="CETV早期教育" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CETV早期教育.png" group-title="特色频道",CETV早期教育
+http://192.168.1.1:4022/rtp/233.18.204.187:5140
+#EXTINF:-1 tvg-name="甘肃卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/甘肃卫视.png" group-title="卫视频道",甘肃卫视
+http://192.168.1.1:4022/rtp/233.18.204.110:5140
+#EXTINF:-1 tvg-name="广西卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/广西卫视.png" group-title="卫视频道",广西卫视
+http://192.168.1.1:4022/rtp/233.18.204.107:5140
+#EXTINF:-1 tvg-name="吉林卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/吉林卫视.png" group-title="卫视频道",吉林卫视
+http://192.168.1.1:4022/rtp/233.18.204.108:5140
+#EXTINF:-1 tvg-name="内蒙古卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/内蒙古卫视.png" group-title="卫视频道",内蒙古卫视
+http://192.168.1.1:4022/rtp/233.18.204.217:5140
+#EXTINF:-1 tvg-name="青海卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/青海卫视.png" group-title="卫视频道",青海卫视
+http://192.168.1.1:4022/rtp/233.18.204.112:5140
+#EXTINF:-1 tvg-name="山西卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/山西卫视.png" group-title="卫视频道",山西卫视
+http://192.168.1.1:4022/rtp/233.18.204.211:5140
+#EXTINF:-1 tvg-name="陕西卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/陕西卫视.png" group-title="卫视频道",陕西卫视
+http://192.168.1.1:4022/rtp/233.18.204.223:5140
+#EXTINF:-1 tvg-name="西藏卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/西藏卫视.png" group-title="卫视频道",西藏卫视
+http://192.168.1.1:4022/rtp/233.18.204.222:5140
+#EXTINF:-1 tvg-name="延边卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/延边卫视.png" group-title="卫视频道",延边卫视
+http://192.168.1.1:4022/rtp/233.18.204.155:5140
+#EXTINF:-1 tvg-name="云南卫视" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/云南卫视.png" group-title="卫视频道",云南卫视
+http://192.168.1.1:4022/rtp/233.18.204.106:5140
+#EXTINF:-1 tvg-name="乐游" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/乐游.png" group-title="特色频道",乐游
+http://192.168.1.1:4022/rtp/233.18.204.47:5140
+#EXTINF:-1 tvg-name="家庭理财" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/家庭理财.png" group-title="特色频道",家庭理财
+http://192.168.1.1:4022/rtp/233.18.204.157:5140
+#EXTINF:-1 tvg-name="财富天下" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/财富天下.png" group-title="特色频道",财富天下
+http://192.168.1.1:4022/rtp/233.18.204.231:5140
+#EXTINF:-1 tvg-name="法治天地" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/法治天地.png" group-title="上海本地",法治天地
+http://192.168.1.1:4022/rtp/233.18.204.49:5140
+#EXTINF:-1 tvg-name="快乐垂钓" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/快乐垂钓.png" group-title="特色频道",快乐垂钓
+http://192.168.1.1:4022/rtp/233.18.204.42:5140
+#EXTINF:-1 tvg-name="BesTV电影介绍" group-title="特色频道",BesTV电影介绍
+http://192.168.1.1:4022/rtp/233.18.204.116:5140
+#EXTINF:-1 tvg-name="CHC动作电影" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CHC动作电影.png" group-title="特色频道",CHC动作电影
+http://192.168.1.1:4022/rtp/233.18.204.174:5140
+#EXTINF:-1 tvg-name="CHC影迷电影" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CHC影迷电影.png" group-title="特色频道",CHC影迷电影
+http://192.168.1.1:4022/rtp/233.18.204.175:5140
+#EXTINF:-1 tvg-name="兵器科技" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/兵器科技.png" group-title="特色频道",兵器科技
+http://192.168.1.1:4022/rtp/233.18.204.178:5140
+#EXTINF:-1 tvg-name="第一剧场" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/第一剧场.png" group-title="特色频道",第一剧场
+http://192.168.1.1:4022/rtp/233.18.204.184:5140
+#EXTINF:-1 tvg-name="风云剧场" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/风云剧场.png" group-title="特色频道",风云剧场
+http://192.168.1.1:4022/rtp/233.18.204.183:5140
+#EXTINF:-1 tvg-name="风云音乐" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/风云音乐.png" group-title="特色频道",风云音乐
+http://192.168.1.1:4022/rtp/233.18.204.185:5140
+#EXTINF:-1 tvg-name="风云足球" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/风云足球.png" group-title="特色频道",风云足球
+http://192.168.1.1:4022/rtp/233.18.204.176:5140
+#EXTINF:-1 tvg-name="高尔夫网球" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/高尔夫网球.png" group-title="特色频道",高尔夫网球
+http://192.168.1.1:4022/rtp/233.18.204.181:5140
+#EXTINF:-1 tvg-name="怀旧剧场" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/怀旧剧场.png" group-title="特色频道",怀旧剧场
+http://192.168.1.1:4022/rtp/233.18.204.182:5140
+#EXTINF:-1 tvg-name="女性时尚" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/女性时尚.png" group-title="特色频道",女性时尚
+http://192.168.1.1:4022/rtp/233.18.204.180:5140
+#EXTINF:-1 tvg-name="世界地理" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/世界地理.png" group-title="特色频道",世界地理
+http://192.168.1.1:4022/rtp/233.18.204.179:5140
+#EXTINF:-1 tvg-name="文化精品" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/文化精品.png" group-title="特色频道",文化精品
+http://192.168.1.1:4022/rtp/233.18.204.186:5140
+#EXTINF:-1 tvg-name="央视台球" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/央视台球.png" group-title="央视频道",央视台球
+http://192.168.1.1:4022/rtp/233.18.204.177:5140
+#EXTINF:-1 tvg-name="金色学堂" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/金色学堂.png" group-title="少儿频道",金色学堂
+http://192.168.1.1:4022/rtp/233.18.204.66:5140
+#EXTINF:-1 tvg-name="卡酷少儿" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/卡酷少儿.png" group-title="少儿频道",卡酷少儿
+http://192.168.1.1:4022/rtp/233.18.204.109:5140
+#EXTINF:-1 tvg-name="东方卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/东方卫视.png" group-title="4K超高清",东方卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.224:5140
+#EXTINF:-1 tvg-name="欢笑剧场「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/欢笑剧场.png" group-title="4K超高清",欢笑剧场「4K」
+http://192.168.1.1:4022/rtp/233.18.204.115:5140
+#EXTINF:-1 tvg-name="BesTV电影「4K」" group-title="4K超高清",BesTV电影「4K」
+http://192.168.1.1:4022/rtp/233.18.204.169:5140
+#EXTINF:-1 tvg-name="BesTV记录「4K」" group-title="4K超高清",BesTV记录「4K」
+http://192.168.1.1:4022/rtp/233.18.204.170:5140
+#EXTINF:-1 tvg-name="CCTV16「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV16.png" group-title="4K超高清",CCTV16「4K」
+http://192.168.1.1:4022/rtp/233.18.204.114:5140
+#EXTINF:-1 tvg-name="CCTV4K「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/CCTV4K.png" group-title="4K超高清",CCTV4K「4K」
+http://192.168.1.1:4022/rtp/233.18.204.188:5140
+#EXTINF:-1 tvg-name="北京卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/北京卫视.png" group-title="4K超高清",北京卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.209:5140
+#EXTINF:-1 tvg-name="广东卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/广东卫视.png" group-title="4K超高清",广东卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.218:5140
+#EXTINF:-1 tvg-name="湖南卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/湖南卫视.png" group-title="4K超高清",湖南卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.227:5140
+#EXTINF:-1 tvg-name="江苏卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/江苏卫视.png" group-title="4K超高清",江苏卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.226:5140
+#EXTINF:-1 tvg-name="山东卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/山东卫视.png" group-title="4K超高清",山东卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.228:5140
+#EXTINF:-1 tvg-name="深圳卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/深圳卫视.png" group-title="4K超高清",深圳卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.219:5140
+#EXTINF:-1 tvg-name="四川卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/四川卫视.png" group-title="4K超高清",四川卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.225:5140
+#EXTINF:-1 tvg-name="浙江卫视「4K」" tvg-logo="https://cdn.jsdelivr.net/gh/ihipop/Shanghai-IPTV@master/tv-logo/浙江卫视.png" group-title="4K超高清",浙江卫视「4K」
+http://192.168.1.1:4022/rtp/233.18.204.229:5140
+#EXTINF:-1 tvg-name="BesTV动画「4K」" group-title="4K超高清",BesTV动画「4K」
+http://192.168.1.1:4022/rtp/233.18.204.171:5140

@@ -107,6 +107,44 @@
  *         麻豆通 3 且整表 8.3MB 拉完要 187 秒（超应用 15~20 秒读超时）→ 均剔除；
  *         MyCamTV 随机 12 通 12 转正，色播聚合随机 12 通 5 保留（理由见 lives 段尾）；
  *      d) 定稿：点播 55 站（成人 12）/ 直播 27 路（成人 2），未解锁面板显示 43 站 + 一行解锁入口。
+ *         （这一版的站点数已被 ⑯ h 改成 49/37，以 ⑯ 为准。）
+ *   ⑯ 2026-11-03 夜里拿模拟器把「本机复算不了的那批」逐站打到出画（tools/device_local_sweep.py --play，
+ *      127.0.0.1:5555，先看日志再看屏；坐标全按 dumpLayout 现算，模拟器与真机不是一套点位）：
+ *      a) 随包 JS 能播：农民影视（列表 30 条 → 「空枪」HD粤语 → 片源画面 1920x800，2.7 秒进 playing）、
+ *         快看影视（列表 30 条 → 1920x800，4.4 秒进 playing，去广告 1492 片→1471 片省 77 秒广告）；
+ *      b) 随包 JS 判死/待定：电影导航（列表 15 条能出，详情 dydhhy.com 20 秒超时）、
+ *         人人电影网（一轮列表 10 条，复测 categoryContent 超时 + 「该分类暂无内容」，慢到不能用）；
+ *      c) 内置 XBPQ 规则四个都没到出画：飞快影视（列表 40 条，取播地址 feikuai.in 超时）、
+ *         大白鲨（列表 dabaisha.tv 超时）、全网看（列表 36 条）与欧乐影视（列表 24 条）
+ *         —— 后两个是「未取到直链，沿用播放页地址」，把网页地址喂给播放器才报 13900012 Permission denied，
+ *         属于规则缺一步解包，不是站点死了（要收就得先补规则）；
+ *      d) 聚合系（本机侧已判死的六个）在应用里同样不行：📡 HD(SN)、📡 闪电、公开·率率 都是
+ *         「Invalid SSL peer certificate」+ AVPlayer 5400102/5400103；公开·暴風 列表就超时；樱花资源 HTTP 403；
+ *         📡 金鹰、金鹰资源、公开·建安 只点到线路标签，没拿到画面（与本机 0/6、2/6、0/6 对得上）；
+ *      e) 成人表在应用里能播的两张：🔞 频道表影片（1 分组 → 1280x720，7.5 秒进 playing，去广告 1001→983）、
+ *         🔞 香奶儿XML（720x406，16.2 秒进 playing）；🔞 火速成人 取链跑通（1170 片→1158 片）但这条 5400102 失败；
+ *      f) 🔞 日韩影片表在线拉时应用里拉不出来：等 120 秒仍是「分类加载失败/列表加载失败：请求超时」——
+ *         表 6.9MB/40627 条，本机拉完整表要 91 秒，而应用读超时只有 20 秒（⑬ 那次真机报的「出画 1.3 秒」
+ *         与这一条对不上，得拿真机重跑一次才能定）；→ 已按 h 改成随包快照，装机后能出列表也能出画（见 h）；
+ *      g) 另外补上一条重要现象：清数据冷启动时，随包那份会被 GitHub 上的在线副本当场顶掉
+ *         （日志「内置源在线副本已更新…（已切为当前配置）」；最早那次顶成「共 24 个站点」，
+ *         2026-11-04 再顶是「共 55 个站点」——说明仓库上已经是一份包成人合并后的旧快照，
+ *         但仍带着刚从本文件摘掉的六个死站，也没有日韩表的随包快照写法）——
+ *         不 push 新快照，用户装完看到的就是旧源；设置页已加解释，点「恢复随包内置」可切回。
+ *      h) 2026-11-04 按上面两侧（本机复算 + 模拟器应用内）的结论落刀，用户口径「只摘两侧都判死的」：
+ *         摘掉六个——📡 金鹰、📡 闪电、📡 HD(SN)（① 块 12→9），公开·建安、公开·率率（② 块 8→6），公开·暴風（⑤ 块）；
+ *         保留观察的：金鹰资源（本机 2/6）、樱花资源（本机 1/6，模拟器 HTTP 403）、四个 XBPQ 爬虫站（规则缺一步解包，不是站死）、
+ *         电影导航与人人电影网（列表能出但详情超时，慢）。
+ *         点播因此 55→49（成人仍是 12），未解锁面板 43→37；🔞 日韩影片表改成随包快照 live/jp-korea.m3u（见 sites 里该条目注释）。
+ *      i) 2026-11-04 装机复验上面那一刀（模拟器 127.0.0.1:5555，清数据后点设置→「恢复随包内置」，不让 GitHub 那份顶掉）：
+ *         面板提示已是「共 37 个可选站点…（另有 12 个成人站点收起，点末尾一行输口令）」，日志「TVBox 源加载成功，共 49 个站点」；
+ *         日韩表快照装机后跑通：输口令展开 → 切到该站 →「频道表站点 🔞 日韩影片表：1 个分组」→ 点卡片进详情 →
+ *         「主线路」（计时·解析 1/1）→ 片源画面 1280x720，1.5 秒进 playing——t33.cdn2020.com 那条证书链在播放器里没问题，
+ *         之前本机 urllib 抽测报的 CERTIFICATE_VERIFY_FAILED 确认为探测侧假阴性；
+ *      j) 上面这次装机顺带修了一个解析坑：type=4 的站点在 TvBoxSource.kindOf 里只认 http 地址，
+ *         改成随包快照（api 改成 rawfile: 前缀指向 live/jp-korea.m3u）后被整站丢掉，日志报
+ *         「忽略不支持的站点 🔞 日韩影片表」→「可用 48 个，忽略 1 个」；已按 TextLoader 支持的地址形式
+ *         （http/rawfile/file:///绝对路径/base64://）放开，修后日志回到「共 49 个站点」。
  *
  * 【导入】设置 → 内容源 → 「本机文件导入」→ 选中本文件
  *   正文落进沙箱 <filesDir>/configs/ 并自动设为当前配置档，之后断网/换域名都能切回来。
@@ -123,28 +161,16 @@
     { "key": "js_kuaikan", "name": "快看影视", "type": 3, "api": "csp_kuaikan", "searchable": 1, "quickSearch": 1, "changeable": 0 },
     { "key": "js_dydhhy", "name": "电影导航", "type": 3, "api": "csp_dydhhy", "searchable": 1, "quickSearch": 1, "changeable": 0 },
     { "key": "js_rrdyw", "name": "人人电影网", "type": 3, "api": "csp_rrdyw", "searchable": 1, "quickSearch": 1, "changeable": 0 },
-    // ─────────────────── ① 你自己的聚合站（12 个，全部实测存活） ───────────────────
+    // ─────────────────── ① 你自己的聚合站（9 个，走 ys.cxkjg.cn 转发） ───────────────────
+    // 2026-11-04 摘掉三条：📡 金鹰（source=2680151544）、📡 闪电（source=3848762792）、📡 HD(SN)（source=1208629981）。
+    //   这三个接口本身能回列表（分类、片子都在），但它给出的回源地址是死的：
+    //   本机按应用取链口径抽测 0/6 出画（snm3u8 / sdm3u8 回 HTML 死链跳转页，jinyingyun 直接连不通），
+    //   模拟器同一时刻报「Invalid SSL peer certificate」+ AVPlayer 5400102/5400103——两侧同判死，按「只收实测能播的」摘。
     {
       "key": "创享影视",
       "name": "🌟 创享影视",
       "type": 1,
       "api": "http://ys.cxkjg.cn/api/provide/vod",
-      "searchable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "source_2680151544",
-      "name": "📡 金鹰",
-      "type": 1,
-      "api": "http://ys.cxkjg.cn/api/provide/vod?source=2680151544",
-      "searchable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "source_3848762792",
-      "name": "📡 闪电",
-      "type": 1,
-      "api": "http://ys.cxkjg.cn/api/provide/vod?source=3848762792",
       "searchable": 1,
       "quickSearch": 1
     },
@@ -181,14 +207,6 @@
       "quickSearch": 1
     },
     {
-      "key": "source_1208629981",
-      "name": "📡 HD(SN)",
-      "type": 1,
-      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1208629981",
-      "searchable": 1,
-      "quickSearch": 1
-    },
-    {
       "key": "source_2761253814",
       "name": "📡 红牛",
       "type": 1,
@@ -221,29 +239,15 @@
       "quickSearch": 1
     },
 
-    // ─────────────── ② 公开配置里的直连 CMS（8 个，域名各不相同，用来分散风险） ───────────────
+    // ─────────────── ② 公开配置里的直连 CMS（6 个，域名各不相同，用来分散风险） ───────────────
     // 这几家的「分类第一页」经常是空的或只有一两条（模板给的假分类），应用会自动退回「全部」再拉一次，属正常现象。
+    // 2026-11-04 摘掉两条：公开·建安（154.219.117.232:9981，mgtv/qq/qiyi 三个回源全给 HTML 死链，本机 0/6）、
+    //   公开·率率（suoniapi.com，回源 snm3u8 死链，本机 0/6 + 模拟器 SSL 报错）。
     {
       "key": "pub-tyys",
       "name": "公开·天涯",
       "type": 1,
       "api": "http://tyyszy.com/api.php/provide/vod",
-      "searchable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "pub-jianan",
-      "name": "公开·建安",
-      "type": 1,
-      "api": "http://154.219.117.232:9981/jacloudapi.php/provide/vod",
-      "searchable": 1,
-      "quickSearch": 1
-    },
-    {
-      "key": "pub-suoniapi",
-      "name": "公开·率率",
-      "type": 1,
-      "api": "https://suoniapi.com/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1
     },
@@ -291,14 +295,7 @@
     // ─────────────── ⑤ 公开配置实测新增（2026-11-02，逐个抓 ?ac=list 验证存活） ───────────────
     // 原来这里挂的是 4 个「实验·jar 骨架」站（csp_DouDou/AppYsV2/XBPQ/Duboku）：
     // 它们既没有 host 也没有 ext，永远只能出一个类名，取不到任何数据，已整块摘掉。
-    {
-      "key": "pub-bfzy",
-      "name": "公开·暴風",
-      "type": 1,
-      "api": "https://bfzyapi.com/api.php/provide/vod",
-      "searchable": 1,
-      "quickSearch": 1
-    },
+    // 2026-11-04 这条也摘了：公开·暴風（bfzyapi.com）——本机 URLError 0/6，模拟器列表项直接请求超时。
     {
       "key": "pub-tyysapi",
       "name": "公开·天涯资源",
@@ -670,15 +667,20 @@
     // 2026-11-03 随机抽 12 条探流：可播 9 条（本批成人表里唯一过线的）；
     //   国产系列 hsck_gc.m3u 37500 条只通 2/12（片子大量 404/403）、麻豆 mdsp.m3u 28263 条只通 3/12
     //   且整表 8.3MB、本机拉完花了 187 秒（应用的读超时只有 15~20 秒，根本进不到列表）——两条都不要；
-    //   日韩表自己也有 6.9MB，本机一次拉完用了 91 秒，所以真机上能不能拉到列表得单独验（见 ⑮ 段的待办）。
-    // 解析器上限 5000 条，所以看到的是前 5000 部，翻页够用。
+    // 2026-11-03 模拟器实测：整表在线拉时等 120 秒仍报「分类加载失败/列表加载失败：请求超时」——
+    //   表 6.9MB，本机一次拉完要 91 秒，应用侧根本进不到列表（头部 ⑯ f）。
+    // 2026-11-04 改成随包裁剪快照：live/jp-korea.m3u（前 2000 条 / 341KB，装上就能翻）。
+    //   装机复验过了：输口令展开 → 切本表 →「1 个分组」→ 详情点「主线路」→ 画面 1280x720，1.5 秒进 playing。
+    //   快照由 tools/snapshot_jp_table.py 生成，内容停在这次抓取那天；要更新就重跑一遍那脚本再编译。
+    //   快照里抽 12 条探流全部 206 + HLS（注意：用 curl 抽才算数，本机 urllib 抽会因为
+    //   t33.cdn2020.com 证书链含自签报 CERTIFICATE_VERIFY_FAILED，是探测侧的假阴性，不代表播放器取不到）。
     // 表里 4 个频道名是百分号编码的（%3F%3F娟公子%3F%3F / f%20罩杯大奶妹 / 暖暖%7E / Cherry%2520Ella），
     // 已在 m3u 解析处按名解码（最多两轮，最后一那个是被套了两层的）。
     {
       "key": "adult-hsckrh",
       "name": "🔞 日韩影片表",
       "type": 4,
-      "api": "https://clun.top/lib/hsck_rh.m3u",
+      "api": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/jp-korea.m3u",
       "searchable": 1,
       "quickSearch": 0,
       "adult": 1
@@ -722,42 +724,42 @@
   "lives": [
     {
       "name": "LIVE·上海移动 IPTV（64 台·公网可播）",
-      "url": "rawfile:live/sh-mobile.m3u",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-mobile.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·上海电信 IPTV（149 台·组播需 udpxy）",
-      "url": "rawfile:live/sh-telecom.m3u",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-telecom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·上海联通 IPTV（125 台·仅联通宽带）",
-      "url": "rawfile:live/sh-unicom.m3u",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-unicom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·河南移动 IPTV（350 台·仅移动网络）",
-      "url": "rawfile:live/hn-mobile.m3u",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-mobile.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·河南电信 IPTV（75 台·仅电信网络）",
-      "url": "rawfile:live/hn-telecom.m3u",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-telecom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·河南联通 IPTV（174 台·需本机 udpxy）",
-      "url": "rawfile:live/hn-unicom.m3u",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-unicom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
