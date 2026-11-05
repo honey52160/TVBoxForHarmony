@@ -1,0 +1,551 @@
+{
+  "name": "YSC 普通源（点播+直播）",
+  "sites": [
+    {
+      "key": "js_nongmin",
+      "name": "农民影视",
+      "type": 3,
+      "api": "csp_nongmin",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0
+    },
+    {
+      "key": "js_kuaikan",
+      "name": "快看影视",
+      "type": 3,
+      "api": "csp_kuaikan",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0
+    },
+    {
+      "key": "js_dydhhy",
+      "name": "电影导航",
+      "type": 3,
+      "api": "csp_dydhhy",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0
+    },
+    {
+      "key": "js_rrdyw",
+      "name": "人人电影网",
+      "type": 3,
+      "api": "csp_rrdyw",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0
+    },
+    {
+      "key": "创享影视",
+      "name": "🌟 创享影视",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1840804598",
+      "name": "📡 非凡",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1840804598",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1470828922",
+      "name": "📡 量子",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1470828922",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_4118858385",
+      "name": "📡 WS",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=4118858385",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_1016684692",
+      "name": "📡 速博",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=1016684692",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_2761253814",
+      "name": "📡 红牛",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=2761253814",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_4194624554",
+      "name": "📡 U酷",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=4194624554",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_4247318859",
+      "name": "📡 光速",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=4247318859",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "source_531717376",
+      "name": "📡 樱花",
+      "type": 1,
+      "api": "http://ys.cxkjg.cn/api/provide/vod?source=531717376",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-tyys",
+      "name": "公开·天涯",
+      "type": 1,
+      "api": "http://tyyszy.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-dytt",
+      "name": "公开·电影天堂",
+      "type": 1,
+      "api": "http://caiji.dyttzyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-lziapi",
+      "name": "公开·量子直连",
+      "type": 1,
+      "api": "https://cj.lziapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-ffzy",
+      "name": "公开·非凡直连",
+      "type": 1,
+      "api": "http://ffzy.tv/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-bdzy",
+      "name": "公开·百度",
+      "type": 1,
+      "api": "https://api.apibdzy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-hhzy",
+      "name": "公开·火狐",
+      "type": 1,
+      "api": "https://hhzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-tyysapi",
+      "name": "公开·天涯资源",
+      "type": 1,
+      "api": "https://tyyszyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-ffzyapi",
+      "name": "公开·非凡采集",
+      "type": 1,
+      "api": "https://cj.ffzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-maotai",
+      "name": "公开·影剧资源",
+      "type": 1,
+      "api": "https://caiji.maotaizy.cc/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-iqiyi",
+      "name": "公开·爱奇艺",
+      "type": 1,
+      "api": "https://www.iqiyizyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-dazhong",
+      "name": "公开·大众资源",
+      "type": 1,
+      "api": "https://cdn.dzzyapi.com/api.php/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-360zy",
+      "name": "360zy资源",
+      "type": 1,
+      "api": "https://360zy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-jyzy",
+      "name": "金鹰资源",
+      "type": 1,
+      "api": "https://jyzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-subo",
+      "name": "速播资源",
+      "type": 1,
+      "api": "https://subocaiji.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-yyzy",
+      "name": "优质资源",
+      "type": 1,
+      "api": "https://api.yyzy-tv.vip/inc/apijson.php",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-apiyh",
+      "name": "樱花资源",
+      "type": 1,
+      "api": "https://m3u8.apiyhzy.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "clun-mtzy",
+      "name": "茅台MT资源",
+      "type": 1,
+      "api": "https://mtzy.me/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-juliang",
+      "name": "公开·巨量",
+      "type": 1,
+      "api": "https://api.juliang.live/api/provide/vod",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-jszy",
+      "name": "公开·极速资源",
+      "type": 1,
+      "api": "https://jszyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "pub-xinlang",
+      "name": "公开·新浪资源",
+      "type": 1,
+      "api": "https://api.xinlangapi.com/xinlangapi.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1
+    },
+    {
+      "key": "xbpq-飞快影视",
+      "name": "爬虫·飞快影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "作者": "魔法少女",
+        "站名": "飞快TV",
+        "请求头": "User-Agent$MOBILE_UA",
+        "编码": "UTF-8",
+        "主页url": "https://feikuai.in/",
+        "首页": "120",
+        "起始页": "1",
+        "分类url": "https://feikuai.in/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html",
+        "分类": "电影$1#剧集$2#综艺$3#动漫$4",
+        "二次截取": "",
+        "数组": "/voddetail&&</a>[不包含:icon-hot]",
+        "链接": "/voddetail/+/&&\"",
+        "标题": "alt=\"&&\"",
+        "图片": "data-original=\"&&\"",
+        "副标题": "🌹+module-item-note\">&&</div",
+        "简介": "introduction-content\">&&</div",
+        "线路二次截取": "",
+        "线路数组": "tab-item\"&&</div",
+        "线路标题": "<span>&&</span>+【共+<small>&&</small>+集】",
+        "播放二次截取": "",
+        "播放数组": "module-play-list\">&&</div>",
+        "倒序": "0",
+        "播放列表": "<a&&/a>",
+        "播放标题": "<span>&&</span>",
+        "播放链接": "href=\"&&\"",
+        "跳转播放链接": "urlDecode(Base64(var player_*url\":\"&&\"))",
+        "搜索请求头": "User-Agent$MOBILE_UA",
+        "搜索url": "https://feikuai.in/label/search_ajax.html?wd={wd}&by=time&order=desc&page={pg}",
+        "搜索模式": "1",
+        "搜索后缀": "",
+        "筛选": "1",
+        "类型": "喜剧片$6#动作片$7#科幻片$8#爱情片$9#战争片$10#恐怖片$11#剧情片$12#其它$30||内地剧$13#港台剧$14#日韩剧$15#欧美剧$16#短剧$32#其它剧$31||大陆综艺$20#港台综艺$21#日韩综艺$23#欧美综艺$22#其它综艺$24||大陆动漫$25#港台动漫$26#日韩动漫$27#欧美动漫$28#其它动漫$29",
+        "剧情": "喜剧&爱情&恐怖&动作&科幻&剧情&战争&警匪&犯罪&动画&奇幻&武侠&冒险&枪战&恐怖&悬疑&惊悚&经典&青春&文艺&微电影&古装&历史&运动&农村&儿童&网络电影||古装&战争&青春偶像&喜剧&家庭&犯罪&动作&奇幻&剧情&历史&经典&乡村&情景&商战&网剧&其他||选秀&情感&访谈&播报&旅游&音乐&美食&纪实&曲艺&生活&游戏互动&财经&求职||情感&科幻&热血&推理&搞笑&冒险&萝莉&校园&动作&机战&运动&战争&少年&少女&社会&原创&亲子&益智&励志&其他",
+        "剧情值": "*",
+        "地区": "大陆&香港&台湾&美国&法国&英国&日本&韩国&德国&泰国&印度&意大利&西班牙&加拿大&其他||内地&韩国&香港&台湾&日本&美国&泰国&英国&新加坡&其他||内地&港台&日韩&欧美||国产&日本&欧美&其他",
+        "地区值": "*",
+        "语言": "国语&英语&粤语&闽南语&韩语&日语&法语&德语&其他||国语&英语&粤语&闽南语&韩语&日语&其他||国语&英语&粤语&闽南语&韩语&日语&其他||国语&英语&粤语&闽南语&韩语&日语&其他",
+        "语言值": "*",
+        "年份": "2010-2025",
+        "年份值": "*",
+        "字母": "A&B&C&D&E&F&G&H&I&J&K&L&M&N&O&P&Q&R&S&T&U&V&W&X&Y&Z&0-9",
+        "字母值": "*",
+        "排序": "按时间&按人气&按评分",
+        "排序值": "time&hits&score"
+      }
+    },
+    {
+      "key": "xbpq-全网看",
+      "name": "爬虫·全网看",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "请求头": "手机",
+        "简介": "剧情介绍:+stui-content__desc col-pd clearfix\">&&</div>",
+        "数组": "stui-vodlist__thumb lazyload&&</a>",
+        "图片": "data-original=\"&&\"",
+        "副标题": "pic-text text-right\">&&</span>",
+        "分类url": "https://www.qkw1.com/qkwshow/{cateId}-{area}--{class}-----{catePg}---{year}.html",
+        "分类": "短剧$duanju#电视剧$tv#电影$dy#动漫$dm#综艺$zy"
+      }
+    },
+    {
+      "key": "xbpq-欧乐影视",
+      "name": "爬虫·欧乐影视",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "简介": "剧情介绍:+fed-part-both fed-text-muted\">&&</p>",
+        "数组": "fed-col-xs4 fed-col-sm3 fed-col-md2\">&&</li>",
+        "图片": "data-original=\"&&\"",
+        "标题": "fed-part-eone\" href=*>&&</a>",
+        "副标题": "fed-text-center\">&&</span>",
+        "线路数组": "fed-btns-info fed-rims-info fed-part-eone&&</a>",
+        "分类url": "https://www.ifuntv.cc/f/area/{area}/class/{class}/id/{cateId}/page/{catePg}/year/{year}.html",
+        "分类": "短剧$32#电视剧$2#电影$1#动漫$4#综艺$3"
+      }
+    },
+    {
+      "key": "xbpq-大白鲨",
+      "name": "爬虫·大白鲨",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": {
+        "站名": "大白鲨",
+        "主页url": "https://dabaisha.tv/",
+        "编码": "UTF-8",
+        "分类url": "https://dabaisha.tv/{cateId}/explore/page-{catePg}-area-{area}-by-{by}-class-{class}-year-{year}.html",
+        "分类": "电影$movie#剧集$tv#综艺$variety#动漫$cartoon#短剧$mini-drama",
+        "数组": "class=\"public-list-exp\"&&</div>",
+        "图片": "https+://dabaisha.tv/upload/+data-src=\"/upload/&&\"",
+        "标题": "title=\"&&\"",
+        "副标题": "class=\"public-list-prb hide ft2\">&&<",
+        "链接": "href=\"&&\"",
+        "线路数组": "<h2&&</h2>",
+        "播放数组": "class=\"anthology-list-play&&</ul>",
+        "播放列表": "<li&&</li>",
+        "播放标题": "\">&&</a>",
+        "播放链接": "href=\"&&\"",
+        "搜索url": "https://dabaisha.tv/search?wd={wd}",
+        "搜索模式": "1",
+        "搜索数组": "class=\"cover\"&&</a>",
+        "搜索图片": "https+://dabaisha.tv/upload/+data-src=\"/upload/&&\""
+      }
+    }
+  ],
+  "lives": [
+    {
+      "name": "LIVE·上海移动 IPTV（64 台·公网可播）",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-mobile.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·上海电信 IPTV（149 台·组播需 udpxy）",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-telecom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·上海联通 IPTV（125 台·仅联通宽带）",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-unicom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·河南移动 IPTV（350 台·仅移动网络）",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-mobile.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·河南电信 IPTV（75 台·仅电信网络）",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-telecom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·河南联通 IPTV（174 台·需本机 udpxy）",
+      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-unicom.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·公开源 vbskycn（308 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "LIVE·直播中国 zhi35（79 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhi35/iptv/master/live-china.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·浙江本地 zwc（30 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zwc456baby/iptv_alive/refs/heads/master/live.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·央卫视 wwb521",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/wwb521/live/refs/heads/main/tv.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·聚合 Gather（123 台）",
+      "url": "https://wget.la/https://raw.githubusercontent.com/YanG-1989/m3u/refs/heads/main/Gather.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·全国综合 zhi35（331 台）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhi35/iptv/master/iptv.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·电台 radio（159 个）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zhi35/iptv/master/radio.m3u",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·qist 汇总 list（CCTV/卫视/地方）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/list.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "LIVE·qist 央视卫视 ITV",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/ITV.txt",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "LIVE·qist 地方电视 tvlive",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/qist/tvbox/master/tvlive.txt",
+      "playerType": 1,
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·虎牙一起看",
+      "url": "https://sub.ottiptv.cc/huyayqk.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·斗鱼一起看",
+      "url": "https://sub.ottiptv.cc/douyuyqk.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·B站直播",
+      "url": "https://sub.ottiptv.cc/bililive.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·APTVM3U(全球)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Kimentanm/aptv/master/m3u/iptv.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·suxuang IPTV",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/suxuang/myIPTV/main/ipv4.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·Guovin IPTV(国内)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·mlzlzj IPTV(国内)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/mlzlzj/TV/main/output/result.m3u",
+      "playerType": 1,
+      "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
+      "logo": "https://tb.zbds.top/logo/{name}.png"
+    },
+    {
+      "name": "直播·legal-iptv(海外)",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/gambiarras/legal-iptv/refs/heads/main/playlist.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "直播·catvod",
+      "url": "https://live.catvod.com/tv.m3u",
+      "playerType": 1
+    },
+    {
+      "name": "LIVE·色播聚合",
+      "url": "https://clun.top/lib/sbjh.m3u",
+      "playerType": 1,
+      "adult": 1
+    },
+    {
+      "name": "LIVE·🔞 MyCamTV（40 台·海外）",
+      "url": "https://gh-proxy.com/https://raw.githubusercontent.com/zwrt/IPTV/Files/Adult.m3u",
+      "playerType": 1,
+      "adult": 1
+    }
+  ]
+}
