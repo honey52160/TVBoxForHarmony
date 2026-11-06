@@ -1,5 +1,5 @@
 {
-  "name": "YSC 普通源（点播+直播）",
+  "name": "YSC 综合源（点播+直播+福利）",
   "sites": [
     {
       "key": "js_nongmin",
@@ -390,6 +390,114 @@
         "搜索数组": "class=\"cover\"&&</a>",
         "搜索图片": "https+://dabaisha.tv/upload/+data-src=\"/upload/&&\""
       }
+    },
+    {
+      "key": "adult-didi",
+      "name": "🔞 滴滴成人",
+      "type": 1,
+      "api": "https://api.ddapi.cc/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-heihei",
+      "name": "🔞 嘿嘿成人",
+      "type": 1,
+      "api": "https://api.heiapi.cc/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-huosu",
+      "name": "🔞 火速成人",
+      "type": 1,
+      "api": "https://api.huosuapi.cc/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-jikun",
+      "name": "🔞 鸡坤成人",
+      "type": 1,
+      "api": "https://jkunzyapi.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-yutu",
+      "name": "🔞 玉兔成人",
+      "type": 1,
+      "api": "https://apiyutu.com/api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-flm3u",
+      "name": "🔞 频道表影片",
+      "type": 4,
+      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/zeee-u/lzh06/main/fl.m3u",
+      "searchable": 1,
+      "quickSearch": 0,
+      "adult": 1
+    },
+    {
+      "key": "adult-gdlsp",
+      "name": "🔞 香奶儿XML",
+      "type": 2,
+      "api": "https://www.gdlsp.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-msnii",
+      "name": "🔞 美少女XML",
+      "type": 2,
+      "api": "https://www.msnii.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-pgxdy",
+      "name": "🔞 排购AVXML",
+      "type": 2,
+      "api": "https://www.pgxdy.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-xrbsp",
+      "name": "🔞 信号XML",
+      "type": 2,
+      "api": "https://www.xrbsp.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-kxgav",
+      "name": "🔞 白嫖XML",
+      "type": 2,
+      "api": "https://www.kxgav.com/api/xml.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "adult": 1
+    },
+    {
+      "key": "adult-hsckrh",
+      "name": "🔞 日韩影片表",
+      "type": 4,
+      "api": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/jp-korea.m3u",
+      "searchable": 1,
+      "quickSearch": 0,
+      "adult": 1
     }
   ],
   "lives": [
