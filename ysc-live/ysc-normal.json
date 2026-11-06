@@ -398,7 +398,11 @@
       "api": "https://api.ddapi.cc/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://api.ddapi.cc/"
+      }
     },
     {
       "key": "adult-heihei",
@@ -407,7 +411,11 @@
       "api": "https://api.heiapi.cc/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://api.heiapi.cc/"
+      }
     },
     {
       "key": "adult-huosu",
@@ -416,7 +424,11 @@
       "api": "https://api.huosuapi.cc/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://api.huosuapi.cc/"
+      }
     },
     {
       "key": "adult-jikun",
@@ -425,7 +437,11 @@
       "api": "https://jkunzyapi.com/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://jkunzyapi.com/"
+      }
     },
     {
       "key": "adult-yutu",
@@ -434,7 +450,11 @@
       "api": "https://apiyutu.com/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://apiyutu.com/"
+      }
     },
     {
       "key": "adult-flm3u",
@@ -443,7 +463,11 @@
       "api": "https://gh-proxy.com/https://raw.githubusercontent.com/zeee-u/lzh06/main/fl.m3u",
       "searchable": 1,
       "quickSearch": 0,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://raw.githubusercontent.com/"
+      }
     },
     {
       "key": "adult-gdlsp",
@@ -452,7 +476,11 @@
       "api": "https://www.gdlsp.com/api/xml.php",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.gdlsp.com/"
+      }
     },
     {
       "key": "adult-msnii",
@@ -461,7 +489,11 @@
       "api": "https://www.msnii.com/api/xml.php",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.msnii.com/"
+      }
     },
     {
       "key": "adult-pgxdy",
@@ -470,7 +502,11 @@
       "api": "https://www.pgxdy.com/api/xml.php",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.pgxdy.com/"
+      }
     },
     {
       "key": "adult-xrbsp",
@@ -479,7 +515,11 @@
       "api": "https://www.xrbsp.com/api/xml.php",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.xrbsp.com/"
+      }
     },
     {
       "key": "adult-kxgav",
@@ -488,7 +528,11 @@
       "api": "https://www.kxgav.com/api/xml.php",
       "searchable": 1,
       "quickSearch": 1,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.kxgav.com/"
+      }
     },
     {
       "key": "adult-hsckrh",
@@ -497,7 +541,11 @@
       "api": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/jp-korea.m3u",
       "searchable": 1,
       "quickSearch": 0,
-      "adult": 1
+      "adult": 1,
+      "header": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://raw.githubusercontent.com/"
+      }
     }
   ],
   "lives": [
