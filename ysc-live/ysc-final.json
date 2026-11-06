@@ -485,6 +485,9 @@
     // 而且除了首页以外所有路径都被站方挡住——/show/... 回 403，新模板的 /vodshow/id/1.html 直接回 Cloudflare 520（源站报错）。
     // Mac 与设备两边发都是同样的结果，不是地域网络问题，是站自己的列表路由坏了。
     {
+      // 2026-11-05 补齐详情页剧集规则：站点是 stui DSP 模板，之前只给了列表侧，
+      // 引擎 guessed 兑底会把推荐位 /qkwtv/ 错当剧集；play 页 403 需要 referer，
+      // 这里不配「跳转播放链接」，回退到 parse:1（交给 webview 里站自己的解密 JS）。
       "key": "xbpq-全网看",
       "name": "爬虫·全网看",
       "type": 3,
@@ -496,11 +499,22 @@
         // 块里带 data-original，不写明就没有封面（标题走默认的 title="&&" 已经对了）
         "图片": "data-original=\"&&\"",
         "副标题": "pic-text text-right\">&&</span>",
+        "线路数组": "stui-pannel__head clearfix&&</h3>",
+        "线路标题": "class=\"title\">&&</h3>",
+        "播放数组": "stui-content__playlist clearfix&&</ul>",
+        "播放列表": "<a&&/a>",
+        "播放标题": ">&&</a>",
+        "播放链接": "href=\"&&\"",
         "分类url": "https://www.qkw1.com/qkwshow/{cateId}-{area}--{class}-----{catePg}---{year}.html",
         "分类": "短剧$duanju#电视剧$tv#电影$dy#动漫$dm#综艺$zy"
       }
     },
     {
+      // 2026-11-05 修：旧规则把「线路数组」写成剧集同 class（fed-btns-info fed-rims-info fed-part-eone），
+      // 造成线路 tab 与剧集互相误匹配；又没配「播放数组」，引擎走整页 guessed 兑底，
+      // 把推荐位 /yfsp/… 也当剧集（就是用户反馈的「简介/推荐页被当剧集」）。
+      // 新规则：线路 tab 靠额外的 fed-back-green 区分；剧集块取 fed-play-item fed-drop-item；
+      // 取链时 /play/ 页 iframe 里的 data-play=「3 位盐+Base64」，走新加的 B64Salt op。
       "key": "xbpq-欧乐影视",
       "name": "爬虫·欧乐影视",
       "type": 3,
@@ -511,7 +525,13 @@
         "图片": "data-original=\"&&\"",
         "标题": "fed-part-eone\" href=*>&&</a>",
         "副标题": "fed-text-center\">&&</span>",
-        "线路数组": "fed-btns-info fed-rims-info fed-part-eone&&</a>",
+        "线路数组": "fed-drop-btns fed-padding&&</a>",
+        "线路标题": ">&&</a>",
+        "播放数组": "fed-play-item fed-drop-item&&</div>",
+        "播放列表": "<a class=\"fed-btns-info fed-rims-info fed-part-eone\"&&/a>",
+        "播放标题": ">&&</a>",
+        "播放链接": "href=\"&&\"",
+        "跳转播放链接": "B64Salt(data-play=\"&&\")",
         "分类url": "https://www.ifuntv.cc/f/area/{area}/class/{class}/id/{cateId}/page/{catePg}/year/{year}.html",
         "分类": "短剧$32#电视剧$2#电影$1#动漫$4#综艺$3"
       }
@@ -680,7 +700,7 @@
       "key": "adult-hsckrh",
       "name": "🔞 日韩影片表",
       "type": 4,
-      "api": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/jp-korea.m3u",
+      "api": "rawfile:live/jp-korea.m3u",
       "searchable": 1,
       "quickSearch": 0,
       "adult": 1
@@ -724,42 +744,42 @@
   "lives": [
     {
       "name": "LIVE·上海移动 IPTV（64 台·公网可播）",
-      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-mobile.m3u",
+      "url": "rawfile:live/sh-mobile.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·上海电信 IPTV（149 台·组播需 udpxy）",
-      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-telecom.m3u",
+      "url": "rawfile:live/sh-telecom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·上海联通 IPTV（125 台·仅联通宽带）",
-      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/sh-unicom.m3u",
+      "url": "rawfile:live/sh-unicom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·河南移动 IPTV（350 台·仅移动网络）",
-      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-mobile.m3u",
+      "url": "rawfile:live/hn-mobile.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·河南电信 IPTV（75 台·仅电信网络）",
-      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-telecom.m3u",
+      "url": "rawfile:live/hn-telecom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"
     },
     {
       "name": "LIVE·河南联通 IPTV（174 台·需本机 udpxy）",
-      "url": "https://raw.githubusercontent.com/honey52160/TVBoxForHarmony/main/ysc-live/live/hn-unicom.m3u",
+      "url": "rawfile:live/hn-unicom.m3u",
       "playerType": 1,
       "epg": "http://epg.51zmt.top:8000/api/diyp/?ch={name}&date={date}",
       "logo": "https://tb.zbds.top/logo/{name}.png"

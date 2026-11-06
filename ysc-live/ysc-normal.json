@@ -332,6 +332,12 @@
         "数组": "stui-vodlist__thumb lazyload&&</a>",
         "图片": "data-original=\"&&\"",
         "副标题": "pic-text text-right\">&&</span>",
+        "线路数组": "stui-pannel__head clearfix&&</h3>",
+        "线路标题": "class=\"title\">&&</h3>",
+        "播放数组": "stui-content__playlist clearfix&&</ul>",
+        "播放列表": "<a&&/a>",
+        "播放标题": ">&&</a>",
+        "播放链接": "href=\"&&\"",
         "分类url": "https://www.qkw1.com/qkwshow/{cateId}-{area}--{class}-----{catePg}---{year}.html",
         "分类": "短剧$duanju#电视剧$tv#电影$dy#动漫$dm#综艺$zy"
       }
@@ -347,7 +353,13 @@
         "图片": "data-original=\"&&\"",
         "标题": "fed-part-eone\" href=*>&&</a>",
         "副标题": "fed-text-center\">&&</span>",
-        "线路数组": "fed-btns-info fed-rims-info fed-part-eone&&</a>",
+        "线路数组": "fed-drop-btns fed-padding&&</a>",
+        "线路标题": ">&&</a>",
+        "播放数组": "fed-play-item fed-drop-item&&</div>",
+        "播放列表": "<a class=\"fed-btns-info fed-rims-info fed-part-eone\"&&/a>",
+        "播放标题": ">&&</a>",
+        "播放链接": "href=\"&&\"",
+        "跳转播放链接": "B64Salt(data-play=\"&&\")",
         "分类url": "https://www.ifuntv.cc/f/area/{area}/class/{class}/id/{cateId}/page/{catePg}/year/{year}.html",
         "分类": "短剧$32#电视剧$2#电影$1#动漫$4#综艺$3"
       }
